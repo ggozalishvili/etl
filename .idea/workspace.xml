@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="1st" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/ggozalishvili/GPS.git" />
+      </set>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="bd3784a9-2617-43f2-83b0-3f19c6a587a9" />
+  <component name="ProjectId" id="1v7s5V0R7PjG7qNxF5iOezJNWHU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\PycharmProjects\dash_multi-page\predash\apps" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.index">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="db_connection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/db_connection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="etl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/etl.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="static_date_etl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/static_date_etl.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.index" />
+        <item itemvalue="Python.etl" />
+        <item itemvalue="Python.db_connection" />
+        <item itemvalue="Python.static_date_etl" />
+        <item itemvalue="Python.app" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="" />
+      <created>1625924278941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625924278941</updated>
+      <workItem from="1625924280029" duration="56861000" />
+      <workItem from="1626075700491" duration="35179000" />
+      <workItem from="1626157532874" duration="11769000" />
+      <workItem from="1626171335646" duration="92000" />
+      <workItem from="1626171519660" duration="5861000" />
+      <workItem from="1626200602598" duration="59604000" />
+      <workItem from="1626800755843" duration="4008000" />
+      <workItem from="1626857461958" duration="616000" />
+      <workItem from="1626891382807" duration="1430000" />
+      <workItem from="1627039016621" duration="280000" />
+      <workItem from="1627308555107" duration="4388000" />
+      <workItem from="1627554154415" duration="932000" />
+      <workItem from="1627733407167" duration="649000" />
+      <workItem from="1627977229065" duration="4972000" />
+      <workItem from="1628065560307" duration="12478000" />
+      <workItem from="1628080008377" duration="325000" />
+      <workItem from="1628080347706" duration="3530000" />
+      <workItem from="1628146822779" duration="1931000" />
+      <workItem from="1628179720906" duration="1311000" />
+      <workItem from="1628186429586" duration="313000" />
+      <workItem from="1628189094092" duration="515000" />
+      <workItem from="1628189819210" duration="1254000" />
+      <workItem from="1628191750616" duration="87000" />
+      <workItem from="1628193975401" duration="16000" />
+      <workItem from="1628346486290" duration="358000" />
+      <workItem from="1628525617406" duration="4809000" />
+      <workItem from="1628538006092" duration="1239000" />
+      <workItem from="1628834502882" duration="4762000" />
+      <workItem from="1628840141505" duration="17608000" />
+      <workItem from="1628860915882" duration="6725000" />
+      <workItem from="1628867897994" duration="923000" />
+      <workItem from="1628868971320" duration="1055000" />
+      <workItem from="1628870064201" duration="602000" />
+      <workItem from="1628870844750" duration="2267000" />
+      <workItem from="1628873982996" duration="2425000" />
+      <workItem from="1629313838548" duration="268000" />
+      <workItem from="1629317217257" duration="77000" />
+      <workItem from="1629693923627" duration="17725000" />
+      <workItem from="1629713507685" duration="14130000" />
+      <workItem from="1629777730649" duration="10165000" />
+      <workItem from="1630047725503" duration="41995000" />
+      <workItem from="1630234299414" duration="30963000" />
+      <workItem from="1630322650811" duration="1831000" />
+      <workItem from="1630329252675" duration="6464000" />
+      <workItem from="1630442322168" duration="17000" />
+      <workItem from="1630503557709" duration="221000" />
+      <workItem from="1630505068101" duration="1222000" />
+      <workItem from="1631781568153" duration="6093000" />
+      <workItem from="1637772046485" duration="9000" />
+      <workItem from="1640505779374" duration="600000" />
+      <workItem from="1645084649506" duration="4598000" />
+      <workItem from="1645090615615" duration="3933000" />
+      <workItem from="1645193056530" duration="2148000" />
+      <workItem from="1646813371544" duration="4556000" />
+      <workItem from="1646902472834" duration="3165000" />
+      <workItem from="1646905912274" duration="122000" />
+      <workItem from="1646906048654" duration="1138000" />
+      <workItem from="1652510436528" duration="14781000" />
+      <workItem from="1652532396261" duration="241000" />
+      <workItem from="1652532647251" duration="56000" />
+      <workItem from="1652532725662" duration="387000" />
+      <workItem from="1652533124437" duration="897000" />
+      <workItem from="1652534034179" duration="4423000" />
+      <workItem from="1652538547546" duration="4534000" />
+      <workItem from="1652640154899" duration="15432000" />
+      <workItem from="1653241874760" duration="1032000" />
+      <workItem from="1653242955007" duration="1798000" />
+    </task>
+    <task id="LOCAL-00001" summary="1st">
+      <created>1625989685542</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625989685542</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1st">
+      <created>1626107913666</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626107913666</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1st">
+      <created>1626110308545</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626110308545</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1st">
+      <created>1626121018943</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626121018943</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1st">
+      <created>1626169389646</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626169389646</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1st">
+      <created>1626280209090</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1626280209090</updated>
+    </task>
+    <task id="LOCAL-00007" summary="1st">
+      <created>1626290024275</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626290024275</updated>
+    </task>
+    <task id="LOCAL-00008" summary="1st">
+      <created>1628186563643</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1628186563643</updated>
+    </task>
+    <task id="LOCAL-00009" summary="1st">
+      <created>1628189425153</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1628189425153</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1st">
+      <created>1628189594853</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1628189594853</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1st">
+      <created>1628191767315</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1628191767315</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1st">
+      <created>1628193987652</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1628193987652</updated>
+    </task>
+    <task id="LOCAL-00013" summary="1st">
+      <created>1628852310832</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1628852310833</updated>
+    </task>
+    <task id="LOCAL-00014" summary="1st">
+      <created>1628858688346</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1628858688346</updated>
+    </task>
+    <task id="LOCAL-00015" summary="1st">
+      <created>1628867597477</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1628867597477</updated>
+    </task>
+    <task id="LOCAL-00016" summary="1st">
+      <created>1628867674417</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1628867674417</updated>
+    </task>
+    <task id="LOCAL-00017" summary="1st">
+      <created>1629722173256</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1629722173256</updated>
+    </task>
+    <task id="LOCAL-00018" summary="1st">
+      <created>1629723824869</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1629723824869</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1st">
+      <created>1629728218934</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1629728218934</updated>
+    </task>
+    <task id="LOCAL-00020" summary="1st">
+      <created>1629783589307</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1629783589307</updated>
+    </task>
+    <task id="LOCAL-00021" summary="1st">
+      <created>1629786879707</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1629786879707</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1st">
+      <created>1630065051913</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1630065051913</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1st">
+      <created>1630082685471</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1630082685471</updated>
+    </task>
+    <task id="LOCAL-00024" summary="1st">
+      <created>1630238330672</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1630238330672</updated>
+    </task>
+    <task id="LOCAL-00025" summary="1st">
+      <created>1630260225257</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1630260225257</updated>
+    </task>
+    <task id="LOCAL-00026" summary="1st">
+      <created>1630268109701</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1630268109701</updated>
+    </task>
+    <task id="LOCAL-00027" summary="1st">
+      <created>1630274067006</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1630274067006</updated>
+    </task>
+    <task id="LOCAL-00028" summary="1st">
+      <created>1630333029257</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1630333029257</updated>
+    </task>
+    <task id="LOCAL-00029" summary="1st">
+      <created>1630334960639</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1630334960639</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1st">
+      <created>1631784626930</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1631784626930</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1st">
+      <created>1631792663818</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1631792663818</updated>
+    </task>
+    <task id="LOCAL-00032" summary="1st">
+      <created>1646902620039</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1646902620039</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="with etl" />
+    <MESSAGE value="1st" />
+    <option name="LAST_COMMIT_MESSAGE" value="1st" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="174" key="#Deployment" timestamp="1646903381462">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="552" y="174" key="#Deployment/0.0.1920.1032@0.0.1920.1032" timestamp="1646903381462" />
+    <state x="362" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1652541425172">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="362" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652541425172" />
+    <state x="640" y="271" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1652538308105">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="640" y="271" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1920.1032@0.0.1920.1032" timestamp="1652538308105" />
+    <state x="740" y="257" key="FileChooserDialogImpl" timestamp="1652539182719">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="740" y="257" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1652539182719" />
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1653243112421">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1653243112421" />
+    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1653243112421">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1653243112421" />
+    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1653243112421">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1653243112421" />
+    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1653243112421">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1653243112421" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1652955686473">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1652955686473" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1652955686473">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1652955686473" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1652955686473">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1652955686473" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1652955686473">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1652955686473" />
+    <state width="968" height="524" key="XDebugger.FullValuePopup" timestamp="1652817798583">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="968" height="524" key="XDebugger.FullValuePopup/0.0.1920.1032@0.0.1920.1032" timestamp="1652817798583" />
+    <state x="836" y="373" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1652529978370">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="836" y="373" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1920.1032@0.0.1920.1032" timestamp="1652529978370" />
+    <state x="822" y="393" width="316" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1652541790157">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="822" y="393" width="316" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1032@0.0.1920.1032" timestamp="1652541790157" />
+    <state x="842" y="403" width="295" height="225" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1652540230943">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="842" y="403" width="295" height="225" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652540230943" />
+    <state x="540" y="171" key="com.intellij.database.dbimport.ImportDialog" timestamp="1652541812636">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="540" y="171" key="com.intellij.database.dbimport.ImportDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652541812636" />
+    <state x="690" y="321" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1652541810989">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="690" y="321" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652541810989" />
+    <state x="756" y="336" width="408" height="355" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1652529996767">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="756" y="336" width="408" height="355" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652529996767" />
+    <state x="728" y="410" width="676" height="454" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1652538279872">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="728" y="410" width="676" height="454" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1652538279872" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/predash$test.coverage" NAME="test Coverage Results" MODIFIED="1630271067968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1652810986178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$static_date_etl__1_.coverage" NAME="static_date_etl (1) Coverage Results" MODIFIED="1630132042870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$main.coverage" NAME="main Coverage Results" MODIFIED="1628839228956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$api_connection__1_.coverage" NAME="api_connection (1) Coverage Results" MODIFIED="1628190435217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$crud.coverage" NAME="crud Coverage Results" MODIFIED="1628834736688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$service.coverage" NAME="service Coverage Results" MODIFIED="1630061883782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$app.coverage" NAME="app Coverage Results" MODIFIED="1652533259638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1626279603805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
+    <SUITE FILE_PATH="coverage/predash$cars.coverage" NAME="cars Coverage Results" MODIFIED="1630070772162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1626247795051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
+    <SUITE FILE_PATH="coverage/predash$t.coverage" NAME="t Coverage Results" MODIFIED="1630273206496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$static_date_etl.coverage" NAME="static_date_etl Coverage Results" MODIFIED="1652534884483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1653243051841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

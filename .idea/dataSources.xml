@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="geogps@localhost" uuid="141b0d39-d78a-4cab-9f1f-d8de10f65327">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/geogps</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="heroku" uuid="da8d32cc-51ab-43f9-a662-e725a0714c52">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01</jdbc-url>
+    </data-source>
+  </component>
+</project>
