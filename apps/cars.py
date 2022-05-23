@@ -11,6 +11,7 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
+from app import connection, engine
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -65,7 +66,7 @@ layout = dbc.Container([
 @app.callback(Output('postgres_datatable2', 'children'),
               [Input('interval_pg2', 'n_intervals')])
 def populate_datatable(n_intervals):
-    df = pd.read_sql_table('service', con=db.engine)
+    df = pd.read_sql_table('service', con=connection)
     return [
         dash_table.DataTable(
             id='our-table',
@@ -130,7 +131,7 @@ def df_to_csv(n_clicks, n_intervals, dataset, s):
     if input_triggered == "save_to_postgres":
         s = 6
         pg = pd.DataFrame(dataset)
-        pg.to_sql("service", con=db.engine, if_exists='replace', index=False)
+        pg.to_sql("service", con=connection, if_exists='replace', index=False)
         return output, s
     elif input_triggered == 'interval2' and s > 0:
         s = s - 1

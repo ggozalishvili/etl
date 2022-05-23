@@ -253,7 +253,7 @@ def df_to_csv(n_clicks, n_intervals,slctd_row_indices, dataset, s):
 
         metadata = MetaData()
         #connection = engine.connect()
-        skip_trace.to_sql('skip', engine, if_exists='append', index=False)
+        skip_trace.to_sql('skip', connection, if_exists='append', index=False)
         update_read()
         return output, s
     elif input_triggered == 'interval' and s > 0:

@@ -178,9 +178,9 @@ def update_output(n_clicks):
         df_odo.columns = ['plate', 'start_odo', 'last_odo', 'odo_milage', 'odo_travel_time', 'odo_max_speed']
         df_odo['calc_odo'] = df_odo['last_odo'] + df_odo['odo_milage']
 
-        df_reis.to_sql('reis', engine, if_exists='append')
-        df_eco.to_sql('eco', engine, if_exists='append')
-        df_odo.to_sql('odo', engine, if_exists='replace')
+        df_reis.to_sql('reis', connection, if_exists='append')
+        df_eco.to_sql('eco', connection, if_exists='append')
+        df_odo.to_sql('odo', connection, if_exists='replace')
 
         print("ETL finished")
 

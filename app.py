@@ -20,6 +20,12 @@ url = "ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon"
 user = "admubvebwkovxe"
 password = '28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71'
 
+#Test
+#url = "localhost:5432/geogps"
+#user = "postgres"
+#password = '123456'
+
+
 
 posgtres = PostgresConnection(url, user, password)
 

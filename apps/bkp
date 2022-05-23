@@ -100,18 +100,21 @@ def populate_datatable(n_intervals):
     return [
         dash_table.DataTable(
             id='our-table3',
-            columns=[{
-                         'name': str(x),
-                         'id': str(x),
-                         'deletable': False,
-                         'type': 'numeric',
-                     } if x == 'start_date_time'
-                     else {
-                'name': str(x),
-                'id': str(x),
-                'deletable': True,
-            }
-                     for x in df.columns],
+            columns=[
+                {'id': "plate", 'name': "plate"},
+                {'id': "start_date_time", 'name': "start_date_time"},
+                {'id': "start_location", 'name': "start_location"},
+                {'id': "end_date_time", 'name': "end_date_time"},
+                {'id': "end_location", 'name': "end_location"},
+                {'id': "duration", 'name': "duration"},
+                {'id': "milage", 'name': "milage"},
+                {'id': "max_speed", 'name': "max_speed"},
+                {'id': "driver", 'name': "driver"},
+                {'id': "fuel_consumed", 'name': "fuel_consumed"},
+                {'id': "quantity", 'name': "quantity"},
+                {'id': "service_center", 'name': "service_center"},
+                {'id': "region", 'name': "region"}
+            ],
             data=df.to_dict('records'),
             editable=False,
             row_deletable=True,
@@ -142,18 +145,23 @@ def populate_datatable(n_intervals):
      State('store3', 'data')],
     prevent_initial_call=True)
 def df_to_csv(n_clicks, n_intervals, dataset, s):
+    print (n_clicks)
     output = html.Plaintext("The data has been saved to your PostgreSQL database.",
                             style={'color': 'green', 'font-weight': 'bold', 'font-size': 'large'})
     no_output = html.Plaintext("", style={'margin': "0px"})
 
     input_triggered = dash.callback_context.triggered[0]["prop_id"].split(".")[0]
+    print (input_triggered)
 
     if input_triggered == "save_to_postgres3":
-        s = 6
+        s = 12
         pg = pd.DataFrame(dataset)
-        pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
-                 'quantity', 'service_center', 'region']
-        pg.to_sql("skip", con=connection, if_exists='replace', index=False)
+        pg = pg[["plate", "start_date_time",'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
+                       'max_speed',
+                       'driver', 'fuel_consumed', 'quantity','service_center','region']]
+        print (pg)
+        pg.to_sql("skip", con=connection, if_exists= 'replace', index=False)
+        print ("finished save to database")
         return output, s
     elif input_triggered == 'interval3' and s > 0:
         s = s - 1
