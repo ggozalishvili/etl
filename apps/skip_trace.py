@@ -149,7 +149,7 @@ def df_to_csv(n_clicks, n_intervals, dataset, s):
     input_triggered = dash.callback_context.triggered[0]["prop_id"].split(".")[0]
 
     if input_triggered == "save_to_postgres3":
-        s = 6
+        s = 12
         pg = pd.DataFrame(dataset)
         pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
         return output, s

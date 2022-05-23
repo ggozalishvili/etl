@@ -13,5 +13,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="paid_heroku" uuid="b488125d-4164-4326-8a96-dc56ae341d7e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon</jdbc-url>
+    </data-source>
   </component>
 </project>

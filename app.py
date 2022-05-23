@@ -14,14 +14,14 @@ server = app.server
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # for your home PostgreSQL test table
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:123456@localhost:5432/geogps"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = "admubvebwkovxe:28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon"
 
-url = "ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01"
-user = "oswrsssbmcdtsa"
-password = 'ad6cca6bc8a6d58a80313746f2f7ad22b12ae65d7f75b447f7b785b27845d9e8'
+url = "ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon"
+user = "admubvebwkovxe"
+password = '28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71'
 
 
-posgtres = PostgresConnection(url,user, password)
+posgtres = PostgresConnection(url, user, password)
 
 connection, engine = posgtres.create_connection()
 
