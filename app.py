@@ -21,9 +21,9 @@ user = "admubvebwkovxe"
 password = '28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71'
 
 #Test
-#url = "localhost:5432/geogps"
-#user = "postgres"
-#password = '123456'
+# url = "localhost:5432/geogps"
+# user = "postgres"
+# password = '123456'
 
 
 

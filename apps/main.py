@@ -39,7 +39,7 @@ def read_data():
     reisebi = pd.DataFrame(results_reisebi)
     reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
                        'max_speed',
-                       'driver', 'fuel_consumed', 'quantity']
+                       'driver', 'fuel_consumed', 'quantity','service_center','region']
     del reisebi['id']
 
 
@@ -51,35 +51,35 @@ def read_data():
     skip = pd.DataFrame(results_skip)
     skip.columns = ['plate', 'start_date_time']
 
-    # sc mapping
-    sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
-                       autoload_with=engine)
-    stmt_sc_mapping = select([sc_mapping_table])
-    results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
-    sc_mapping = pd.DataFrame(results_sc_mapping)
-    sc_mapping.columns = ['plate', 'service_center','region']
+    # # sc mapping
+    # sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
+    #                    autoload_with=engine)
+    # stmt_sc_mapping = select([sc_mapping_table])
+    # results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
+    # sc_mapping = pd.DataFrame(results_sc_mapping)
+    # sc_mapping.columns = ['plate', 'service_center','region']
 
 
-    reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
-    reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
-    # eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
+    # reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
+    # reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
+    # # eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
     skip['start_date_time'] = pd.to_datetime(skip['start_date_time'], format='%Y.%m.%dT%H:%M:%S')
-    reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
+    # reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
 
 
     skipped = skip.drop_duplicates()
 
     data_reisebi = (
-        reisebi_ag_data.merge(skipped,
+        reisebi.merge(skipped,
                       on=['plate', 'start_date_time'],
                       how='left',
                       indicator=True)
             .query('_merge == "left_only"')
             .drop(columns='_merge')
     )
-    reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
-    reisebi_final_data['id'] = reisebi_final_data['plate']
-    reisebi_final_data.set_index('id', inplace=True, drop=False)
+    # reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
+    # reisebi_final_data['id'] = reisebi_final_data['plate']
+    # reisebi_final_data.set_index('id', inplace=True, drop=False)
     return data_reisebi, skipped
 
 
@@ -108,10 +108,10 @@ layout = dbc.Container([
                 is_RTL=False,  # True or False for direction of calendar
                 clearable=True,  # whether or not the user can clear the dropdown
                 number_of_months_shown=1,  # number of months shown when calendar is open
-                min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
+                min_date_allowed=dt(2022, 4, 1),  # minimum date allowed on the DatePickerRange component
                 max_date_allowed=dt(2022, 5, 1),  # maximum date allowed on the DatePickerRange component
                 initial_visible_month=dt(2022, 5, 1),  # the month initially presented when the user opens the calendar
-                start_date=dt(2022, 1, 1).date(),
+                start_date=dt(2022, 4, 1).date(),
                 end_date=dt(2022, 5, 1).date(),
                 display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
                 month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.

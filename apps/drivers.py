@@ -3,7 +3,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import pandas as pd
 import pathlib
-import sqlalchemy
 from sqlalchemy import create_engine, MetaData, select, Table
 from app import app
 import dash_table
@@ -12,7 +11,8 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from dash_table.Format import Format, Scheme, Trim
 from app import connection, engine
-
+from sqlalchemy.sql import select
+from sqlalchemy import and_
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -23,88 +23,92 @@ FONT_AWESOME = (
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
-def read_data():
+
+def read_data(reg, sc, start, end):
 
     #engine = sqlalchemy.create_engine('postgresql://oswrsssbmcdtsa:ad6cca6bc8a6d58a80313746f2f7ad22b12ae65d7f75b447f7b785b27845d9e8@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01')
     metadata = MetaData()
     #connection = engine.connect()
 
     #reisebi query
-    reisebi_table = Table('reis', metadata, autoload=True,
-                          autoload_with=engine)
-    stmt_reisebi = select([reisebi_table])
-    results_reisebi = connection.execute(stmt_reisebi).fetchall()
-    reisebi = pd.DataFrame(results_reisebi)
-    reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
+    reisebi_table = Table('reis', metadata, autoload=True,autoload_with=engine)
+    stmt = select([reisebi_table]).where(and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.region == reg , reisebi_table.c.service_center.in_(sc)))
+    result = connection.execute(stmt).fetchall()
+    reisebi = pd.DataFrame(result)
+    reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration',
+                       'milage',
                        'max_speed',
-                       'driver', 'fuel_consumed', 'quantity']
+                       'driver', 'fuel_consumed', 'quantity','service_center','region']
     del reisebi['id']
 
+
+
     #eco query
-    eco_table = Table('eco', metadata, autoload=True,
-                          autoload_with=engine)
-    stmt_eco = select([eco_table])
+    eco_table = Table('eco', metadata, autoload=True, autoload_with=engine)
+    stmt_eco = select([eco_table]).where(
+        and_(eco_table.c.start_time >= start,  eco_table.c.region == reg,
+             eco_table.c.service_center.in_(sc)))
     results_eco = connection.execute(stmt_eco).fetchall()
     eco = pd.DataFrame(results_eco)
     eco.columns = ['id', 'plate', 'driver', 'start_date_time', 'location', 'penalty_type', 'penalty_points', 'quantity',
-                   'eco_milage']
+                   'eco_milage','service_center','region']
     del eco['id']
 
     #skip query
     skip_table = Table('skip', metadata, autoload=True,
-                          autoload_with=engine)
+                          autoload_with = engine)
     stmt_skip = select([skip_table.columns.plate,skip_table.columns.start_date_time])
     results_skip = connection.execute(stmt_skip).fetchall()
     skip = pd.DataFrame(results_skip)
     skip.columns = ['plate', 'start_date_time']
 
-    # sc mapping
-    sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
-                       autoload_with=engine)
-    stmt_sc_mapping = select([sc_mapping_table])
-    results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
-    sc_mapping = pd.DataFrame(results_sc_mapping)
-    sc_mapping.columns = ['plate', 'service_center', 'region']
 
 
-    reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
-    reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
-    eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
+
+
+    # reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
+    # reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
+    # eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
     skip['start_date_time'] = pd.to_datetime(skip['start_date_time'], format='%Y.%m.%dT%H:%M:%S')
-    reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
+    # reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
+    # eco_ag_data = eco.merge(sc_mapping, on='plate', how='left')
+    # eco_ag_data['id'] = eco_ag_data['plate']
 
-
-
-    eco_ag_data = eco.merge(sc_mapping, on='plate', how='left')
-    eco_ag_data['id'] = eco_ag_data['plate']
-
-    eco_ag_data.set_index('id', inplace=True, drop=False)
+    # eco_ag_data.set_index('id', inplace=True, drop=False)
 
     skipped = skip.drop_duplicates()
 
     data_reisebi = (
-        reisebi_ag_data.merge(skipped,
+        reisebi.merge(skipped,
                       on=['plate', 'start_date_time'],
                       how='left',
                       indicator=True)
             .query('_merge == "left_only"')
             .drop(columns='_merge')
     )
-    reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
-    reisebi_final_data['id'] = reisebi_final_data['plate']
-    reisebi_final_data.set_index('id', inplace=True, drop=False)
-    return data_reisebi, eco_ag_data, skipped
+    # reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
+    # reisebi_final_data['id'] = reisebi_final_data['plate']
+    # reisebi_final_data.set_index('id', inplace=True, drop=False)
+    return data_reisebi, eco, skipped
 
-def update_read():
+def update_read(selected_region, selected_sc, start, end):
     global reisebi_data, eco_data, skip_trace
-    reisebi_data, eco_data, skip_trace = read_data()
+    reisebi_data, eco_data, skip_trace = read_data(selected_region, selected_sc, start, end)
     print("reading done")
 
 
 
-reisebi_data, eco_data, skip_trace = read_data()
+reisebi_data, eco_data, skip_trace = read_data('აჭარა',['ბათუმი', 'რეგიონი', 'ქობულეთი', 'ხელვაჩაური'],'2021-05-01','2021-06-12')
 
-
+# menu query
+metadata = MetaData()
+menu_table = Table('menu', metadata, autoload=True,
+                   autoload_with=engine)
+stmt_menu = select([menu_table])
+results_skip = connection.execute(stmt_menu).fetchall()
+menu = pd.DataFrame(results_skip)
+menu.columns = ['region', 'service_center']
+# print(reisebi_data, eco_data, skip_trace)
 
 
 layout = dbc.Container([
@@ -126,7 +130,7 @@ layout = dbc.Container([
             min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
             max_date_allowed=dt(2022, 5, 1),  # maximum date allowed on the DatePickerRange component
             initial_visible_month=dt(2021, 6, 1),  # the month initially presented when the user opens the calendar
-            start_date=dt(2022, 1, 1).date(),
+            start_date=dt(2022, 4, 1).date(),
             end_date=dt(2022, 5, 1).date(),
             display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
             month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
@@ -139,12 +143,14 @@ layout = dbc.Container([
             html.Br(),
             dcc.Dropdown(
                 id='region_dropdown1',
-                options=[{'label': s, 'value': s} for s in sorted(reisebi_data['region'].dropna().unique())],
+                options=[{'label': s, 'value': s} for s in sorted(menu['region'].dropna().unique())],
+                #options=[{'label': s, 'value': s} for s in sorted(['აჭარა','ქართლი'])],
                 # multi=True,
                 value='აჭარა',
                 clearable=False
             ),
-            dcc.Dropdown(id='sc_dropdown1', options=[], multi=True)
+            dcc.Dropdown(id='sc_dropdown1', options=[], multi=True,value='ბათუმი'),
+
         ]
             , width={'size': 2, 'offset': 0}),
 
@@ -260,7 +266,7 @@ html.Div([
     Input('region_dropdown1', 'value'),
 )
 def get_sc_options(region_dropdown):
-    region_un = reisebi_data[reisebi_data['region'] == region_dropdown]
+    region_un = menu[menu['region'] == region_dropdown]
     return [{'label':i, 'value':i} for i in sorted(region_un.service_center.unique())]
 
 
@@ -280,20 +286,27 @@ def get_sc(sc_drop):
     Input('interval_pg1', 'n_intervals')
 )
 def update_aggregate_drv_rows(selected_region, selected_sc, start, end,n_intervals):
-    update_read()
-    data_reis = reisebi_data[(reisebi_data.region == selected_region) & (reisebi_data.service_center.isin(selected_sc)) & ((reisebi_data.start_date_time >= start) & (reisebi_data.start_date_time <= end))]
-    data_eco = eco_data[(eco_data.region == selected_region) & (eco_data.service_center.isin(selected_sc)) & ((eco_data.start_date_time >= start) & (eco_data.start_date_time <= end))]
+    update_read(selected_region, selected_sc, start, end)
+    print(selected_region, selected_sc, start, end)
+    # data_reis = reisebi_data[(reisebi_data.region == selected_region) & (reisebi_data.service_center.isin(selected_sc)) & ((reisebi_data.start_date_time >= start) & (reisebi_data.start_date_time <= end))]
+    # data_eco = eco_data[(eco_data.region == selected_region) & (eco_data.service_center.isin(selected_sc)) & ((eco_data.start_date_time >= start) & (eco_data.start_date_time <= end))]
+
+
+
+
+
+
     # a = data_reis[['service_center', 'driver', 'plate']].reset_index()
     # del a['index']
     # b=a.drop_duplicates()
-    c = data_reis.groupby(['driver','plate']).agg(
+    c = reisebi_data.groupby(['driver','plate']).agg(
         milage=('milage', sum),
         max_speed=('max_speed', max),
         speed_limit_exceed=("max_speed", lambda x: x[x >= 100].count())
     )
     agr_raisebi=c.reset_index()
     # agr_raisebi = b.merge(c, on='driver', how='left')
-    agr_eco = data_eco.groupby('driver').agg(
+    agr_eco = eco_data.groupby('driver').agg(
         penalty_points=('penalty_points', sum),
      )
     agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
@@ -305,15 +318,6 @@ def update_aggregate_drv_rows(selected_region, selected_sc, start, end,n_interva
 
     return agr_to_table.to_dict('records')
 
-
-
-# @app.callback(
-#     Output(component_id='skip_table', component_property='data'),
-#     Input('interval_pg1', 'n_intervals')
-# )
-# def update_skipped_rows(n_intervals):
-#     data_skipped = skip_trace
-#     return data_skipped.to_dict('records')
 
 @app.callback(
     Output(component_id='cars_table', component_property='data'),
@@ -345,12 +349,4 @@ def car_details(selected_region, selected_sc, start, end,n_intervals, slctd_cell
     # print(selected_columns_df)
     return selected_columns_df.to_dict('records')
 
-
-# @app.callback(
-#     dash.dependencies.Output('store99', 'children'),
-#     [dash.dependencies.Input('submit-val', 'n_clicks')],
-#     )
-# def update_output(n_clicks):
-#     update_read()
-#     return n_clicks
 

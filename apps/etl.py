@@ -7,19 +7,28 @@ import datetime
 import sqlalchemy
 from sqlalchemy import create_engine, MetaData, select, Table
 import time
-engine = sqlalchemy.create_engine('postgresql://admubvebwkovxe:28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon')
+from sqlalchemy.types import Integer,DateTime,String
+
+
+
+#engine = sqlalchemy.create_engine('postgresql://admubvebwkovxe:28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon')
+engine = sqlalchemy.create_engine('postgresql://postgres:123456@localhost:5432/geogps')
 metadata = MetaData()
 connection = engine.connect()
 
 
-car_table = Table('cars', metadata, autoload=True,
-autoload_with=engine)
+car_table = Table('cars', metadata, autoload=True,autoload_with=engine)
+sc_mapping = Table('sc_mapping', metadata, autoload=True,autoload_with=engine)
+
 stmt = select([car_table])
 results = connection.execute(stmt).fetchall()
 
+stmt_sc = select([sc_mapping])
+results_sc_map = connection.execute(stmt_sc).fetchall()
 
 #Final Dataframes for SQL
 car = pd.DataFrame(results)
+sc_reg = pd.DataFrame(results_sc_map)
 df_odo = pd.DataFrame()
 df_reis = pd.DataFrame()
 df_eco = pd.DataFrame()
@@ -132,35 +141,61 @@ def gps_api():
         # Extract all the contents of zip file in current directory
         zipObj.extractall()
 
-      odo_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=1,skipfooter=1)
-      reis_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=2,skipfooter=1)
-      eco_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=3,skipfooter=1)
+      odo_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=1,skipfooter=1,
+                              dtype={'index': int, 'plate': str, 'start_odo': int, 'last_odo': int, 'odo_milage': int,
+                                     'odo_travel_time': str, 'odo_max_speed': int, 'calc_odo': int})
+      reis_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=2,skipfooter=1,
+                               dtype={'index': int, 'plate': str, 'start_time': datetime,'start_location': str,
+                                      'end_time': datetime, 'end_location': str, 'duration': str, 'milage': int,
+                                      'max_speed': int, 'driver': str, 'fuel_consumed': int, 'quantity': int})
+      eco_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=3,skipfooter=1,
+                              dtype={'index': int, 'plate': str,'driver': str,'start_time': datetime, 'location': str,
+                                      'penalty_type': str, 'penalty_points': int, 'quantity': int,
+                                     'eco_milage': int})
 
 
 
       df_reis = df_reis.append(reis_raw,ignore_index = True)
+
       df_eco = df_eco.append(eco_raw,ignore_index = True)
       df_odo = df_odo.append(odo_raw[:1], ignore_index=True)
 
     except:
       pass
 
-
-
-
+  df_reis = df_reis.drop(df_reis.columns[[11]], axis=1)
   df_reis.columns = ['plate', 'start_time', 'start_location', 'end_time', 'end_location','duration', 'milage', 'max_speed',
                              'driver','fuel_consumed','quantity']
 
-
+  df_eco = df_eco.drop(df_eco.columns[[8, 9]], axis=1)
   df_eco.columns = ['plate', 'driver', 'start_time','location','penalty_type','penalty_points','quantity','eco_milage']
-
   df_odo.columns = ['plate', 'start_odo', 'last_odo','odo_milage','odo_travel_time','odo_max_speed']
-  df_odo['calc_odo']=df_odo['last_odo']+df_odo['odo_milage']
+  df_odo['calc_odo'] = df_odo['last_odo']+df_odo['odo_milage']
+  sc_reg.columns = ['plate', 'service_center','region']
+
+  df_reis['end_time'] = pd.to_datetime(df_reis['end_time'], format='%d.%m.%Y %H:%M:%S')
+  df_reis['start_time'] = pd.to_datetime(df_reis['start_time'], format='%d.%m.%Y %H:%M:%S')
+  df_eco['start_time'] = pd.to_datetime(df_eco['start_time'], format='%d.%m.%Y %H:%M:%S')
 
 
-  df_reis.to_sql('reis', connection, if_exists = 'append')
-  df_eco.to_sql('eco', connection, if_exists = 'append')
-  df_odo.to_sql('odo', connection, if_exists = 'replace')
+  reisebi_ag_data = df_reis.merge(sc_reg, on='plate', how='left')
+  eco_ag_data = df_eco.merge(sc_reg, on='plate', how='left')
+  odo_ag_data = df_odo.merge(sc_reg, on='plate', how='left')
+
+
+  reisebi_ag_data.to_sql('reis', connection, if_exists = 'append',
+                 dtype={'index': Integer(), 'plate': String(), 'start_time': DateTime(), 'start_location': String(),
+                        'end_time': DateTime(), 'end_location': String(), 'duration': String(), 'milage': Integer(),
+                        'max_speed': Integer(), 'driver': String(), 'fuel_consumed': Integer(), 'quantity': Integer()
+                        , 'service_center': String(), 'region': String()})
+  eco_ag_data.to_sql('eco', connection, if_exists = 'append',
+                dtype={'index': Integer(), 'plate': String(), 'driver': String(), 'start_time': DateTime(), 'location': String(),
+                       'penalty_type': String(), 'penalty_points': Integer(), 'quantity': Integer(),
+                       'eco_milage': Integer(), 'service_center': String(), 'region': String()})
+  odo_ag_data.to_sql('odo', connection, if_exists = 'replace',
+                dtype={'index': Integer(), 'plate': String(), 'start_odo':  Integer(), 'last_odo': Integer(), 'odo_milage': Integer(),
+                       'odo_travel_time': String(), 'odo_max_speed': Integer(), 'calc_odo': Integer()
+                       ,'service_center': String(), 'region': String()})
 
 
   print("ETL finished")

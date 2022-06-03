@@ -7,7 +7,7 @@ from app import app
 from app import server
 
 # Connect to your app pages
-from apps import drivers, main, service, data_update, cars,skip_trace
+from apps import drivers, main, service,cars,skip_trace
 
 
 app.layout = html.Div([
@@ -17,7 +17,6 @@ app.layout = html.Div([
         dcc.Link(' დეტალური მონაცემები | ', href='/apps/main'),
         dcc.Link(' სასერვისო ოდომეტრის ჩვენებები |', href='/apps/cars'),
         dcc.Link(' სერვის რეპორტი |', href='/apps/service'),
-        dcc.Link(' ბაზის განახლება |', href='/apps/data_update'),
         dcc.Link(' სქიპ ტრეისი |', href='/apps/skip_trace'),
     ], className="row"),
     html.Div(id='page-content', children=[])
