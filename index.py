@@ -32,13 +32,11 @@ def display_page(pathname):
         return service.layout
     if pathname == '/apps/cars':
         return cars.layout
-    if pathname == '/apps/data_update':
-        return data_update.layout
     if pathname == '/apps/skip_trace':
         return skip_trace.layout
 
     else:
-        return drivers.layout
+        return main.layout
 
 
 if __name__ == '__main__':

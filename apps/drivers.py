@@ -160,7 +160,7 @@ layout = dbc.Container([
                 id='aggregate_drivers_table',
                 # data=aggregated_data_reisebi.to_dict('records'),
                 # columns=[{'id': c, 'name': c} for c in aggregated_data_reisebi.columns],
-                columns=[{'id': "service_center", 'name': "service_center"},
+                columns=[#{'id': "service_center", 'name': "service_center"},
                          {'id': "driver", 'name': "driver"},
                          {'id': "plate", 'name': "plate"},
                          # {'id': "milage", 'name': "milage"},
@@ -290,12 +290,6 @@ def update_aggregate_drv_rows(selected_region, selected_sc, start, end,n_interva
     print(selected_region, selected_sc, start, end)
     # data_reis = reisebi_data[(reisebi_data.region == selected_region) & (reisebi_data.service_center.isin(selected_sc)) & ((reisebi_data.start_date_time >= start) & (reisebi_data.start_date_time <= end))]
     # data_eco = eco_data[(eco_data.region == selected_region) & (eco_data.service_center.isin(selected_sc)) & ((eco_data.start_date_time >= start) & (eco_data.start_date_time <= end))]
-
-
-
-
-
-
     # a = data_reis[['service_center', 'driver', 'plate']].reset_index()
     # del a['index']
     # b=a.drop_duplicates()
@@ -305,17 +299,13 @@ def update_aggregate_drv_rows(selected_region, selected_sc, start, end,n_interva
         speed_limit_exceed=("max_speed", lambda x: x[x >= 100].count())
     )
     agr_raisebi=c.reset_index()
-    # agr_raisebi = b.merge(c, on='driver', how='left')
     agr_eco = eco_data.groupby('driver').agg(
         penalty_points=('penalty_points', sum),
      )
     agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
 
     agr_to_table['id'] = agr_to_table['plate']+'/'+ agr_to_table['driver']
-    # agr_to_table['id2'] = agr_to_table['driver']
     agr_to_table.set_index('id', inplace=True, drop=False)
-    # agr_to_table.set_index(['id', 'id2'], inplace=True, drop=False)
-
     return agr_to_table.to_dict('records')
 
 
@@ -344,9 +334,9 @@ def car_details(selected_region, selected_sc, start, end,n_intervals, slctd_cell
     # filtered_cars_plates = df.query('driver in @drv_id')
     filtered_cars_plates= df.query('plate in @pl_id & driver in @drv_id')
 
-    # print(filtered_cars_plates)
+    print(filtered_cars_plates)
     selected_columns_df = filtered_cars_plates[["service_center","max_speed","start_date_time","start_location","milage","plate","driver"]]
-    # print(selected_columns_df)
+    print(selected_columns_df)
     return selected_columns_df.to_dict('records')
 
 
