@@ -11,6 +11,7 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from dash_table.Format import Format, Scheme, Trim
 from app import connection, engine
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select
 from sqlalchemy import and_
 
@@ -23,7 +24,7 @@ FONT_AWESOME = (
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
-
+# db = SQLAlchemy(app.server)
 
 
 

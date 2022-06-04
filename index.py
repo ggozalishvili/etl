@@ -7,7 +7,7 @@ from app import app
 from app import server
 
 # Connect to your app pages
-from apps import skip_trace#,drivers,main,service,cars,
+from apps import drivers#,main,service,cars,skip_trace
 
 
 app.layout = html.Div([
@@ -36,7 +36,7 @@ def display_page(pathname):
         return skip_trace.layout
 
     else:
-        return skip_trace.layout
+        return drivers.layout
 
 
 if __name__ == '__main__':

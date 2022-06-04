@@ -11,15 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="1st">
-      <change afterPath="$PROJECT_DIR$/apps/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/db_connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/drivers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drivers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/skip_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/skip_trace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -294,7 +289,9 @@
       <workItem from="1654265012861" duration="8869000" />
       <workItem from="1654274864828" duration="4757000" />
       <workItem from="1654313497268" duration="1094000" />
-      <workItem from="1654314773659" duration="2837000" />
+      <workItem from="1654314773659" duration="3982000" />
+      <workItem from="1654319238839" duration="833000" />
+      <workItem from="1654320537106" duration="2335000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <created>1625989685542</created>
@@ -549,10 +546,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="552" y="174" key="#Deployment/0.0.1920.1032@0.0.1920.1032" timestamp="1646903381462" />
-    <state x="362" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1654277438909">
+    <state x="853" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1654322686128">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="362" y="105" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654277438909" />
+    <state x="853" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654322686128" />
     <state x="735" y="318" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1653333995337">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -569,22 +566,22 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="360" y="253" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1654313905387" />
-    <state width="1877" height="147" key="GridCell.Tab.0.bottom" timestamp="1654317618883">
+    <state width="1599" height="176" key="GridCell.Tab.0.bottom" timestamp="1654322852706">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1654317618883" />
-    <state width="1877" height="147" key="GridCell.Tab.0.center" timestamp="1654317618883">
+    <state width="1599" height="176" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1654322852706" />
+    <state width="1599" height="176" key="GridCell.Tab.0.center" timestamp="1654322852706">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1654317618883" />
-    <state width="1877" height="147" key="GridCell.Tab.0.left" timestamp="1654317618883">
+    <state width="1599" height="176" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1654322852706" />
+    <state width="1599" height="176" key="GridCell.Tab.0.left" timestamp="1654322852706">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1654317618883" />
-    <state width="1877" height="147" key="GridCell.Tab.0.right" timestamp="1654317618883">
+    <state width="1599" height="176" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1654322852706" />
+    <state width="1599" height="176" key="GridCell.Tab.0.right" timestamp="1654322852706">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="147" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1654317618883" />
+    <state width="1599" height="176" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1654322852706" />
     <state width="1877" height="186" key="GridCell.Tab.1.bottom" timestamp="1654274331638">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -680,6 +677,6 @@
     <SUITE FILE_PATH="coverage/predash$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1626247795051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
     <SUITE FILE_PATH="coverage/predash$t.coverage" NAME="t Coverage Results" MODIFIED="1630273206496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$static_date_etl.coverage" NAME="static_date_etl Coverage Results" MODIFIED="1652534884483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1654317618867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1654322852629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
