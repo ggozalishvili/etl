@@ -11,7 +11,7 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from app import connection, engine
+#from app import connection, engine
 from sqlalchemy import create_engine, MetaData, select, Table
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -88,14 +88,14 @@ layout = dbc.Container([
 @app.callback(Output('postgres_datatable3', 'children'),
               [Input('interval_pg3', 'n_intervals')])
 def populate_datatable(n_intervals):
-    metadata = MetaData()
+   # metadata = MetaData()
 
-#    df = pd.read_sql_table('skip', con=db.engine)
-    skip_table = Table('skip', metadata, autoload=True,
-                       autoload_with=engine)
-    skip_sel = select([skip_table])
-    skip_fetch = connection.execute(skip_sel).fetchall()
-    df = pd.DataFrame(skip_fetch)
+    df = pd.read_sql_table('skip', con=db.engine)
+    # skip_table = Table('skip', metadata, autoload=True,
+    #                    autoload_with=engine)
+    # skip_sel = select([skip_table])
+    # skip_fetch = connection.execute(skip_sel).fetchall()
+    # df = pd.DataFrame(skip_fetch)
     df = df.drop_duplicates()
     return [
         dash_table.DataTable(
@@ -149,11 +149,11 @@ def df_to_csv(n_clicks, n_intervals, dataset, s):
     input_triggered = dash.callback_context.triggered[0]["prop_id"].split(".")[0]
 
     if input_triggered == "save_to_postgres3":
-        s = 6
+        s = 12
         pg = pd.DataFrame(dataset)
-        pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
-                 'quantity', 'service_center', 'region']
-        pg.to_sql("skip", con=connection, if_exists='replace', index=False)
+        # pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
+        #          'quantity', 'service_center', 'region']
+        pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
         return output, s
     elif input_triggered == 'interval3' and s > 0:
         s = s - 1

@@ -14,22 +14,23 @@ server = app.server
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # for your home PostgreSQL test table
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "admubvebwkovxe:28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71@ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm"
+#app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:123456@localhost/geogps"
 
-# url = "ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d2dhn8fnd4elon"
-# user = "admubvebwkovxe"
-# password = '28d8b50b757940fa5575af3d57a7506220efadb31603aa50788e5cd5ad2dab71'
+# url = "ec2-52-48-159-67.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm"
+# user = "cnwcerliarfbvk"
+# password = '0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af'
 
 #Test
-url = "localhost:5432/geogps"
-user = "postgres"
-password = '123456'
-
-
-
-posgtres = PostgresConnection(url, user, password)
-
-connection, engine = posgtres.create_connection()
+# url = "localhost:5432/geogps"
+# user = "postgres"
+# password = '123456'
+#
+#
+#
+# posgtres = PostgresConnection(url, user, password)
+#
+# connection, engine = posgtres.create_connection()
 
 # auth = dash_auth.BasicAuth(
 #     app,
