@@ -10,7 +10,7 @@ import dash
 from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+#from flask import Flask
 #from app import connection, engine
 from sqlalchemy import create_engine, MetaData, select, Table
 
