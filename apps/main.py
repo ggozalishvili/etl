@@ -10,8 +10,9 @@ import dash_table
 import dash
 from datetime import datetime as dt
 import dash_bootstrap_components as dbc
+from sqlalchemy.sql import select
+from sqlalchemy import and_
 from app import connection, engine
-
 
 # app requires "pip install psycopg2" as well
 
@@ -24,28 +25,52 @@ FONT_AWESOME = (
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
+# menu query
+metadata = MetaData()
+menu_table = Table('menu', metadata, autoload=True,
+                   autoload_with=engine)
+stmt_menu = select([menu_table])
+results_skip = connection.execute(stmt_menu).fetchall()
+menu = pd.DataFrame(results_skip)
+menu.columns = ['region', 'service_center']
+# print(reisebi_data, eco_data, skip_trace)
 
-
-def read_data():
+def read_data(reg, sc, start, end):
 
     metadata = MetaData()
 
 
-    #reisebi query
-    reisebi_table = Table('reis', metadata, autoload=True,
-                          autoload_with=engine)
-    stmt_reisebi = select([reisebi_table])
-    results_reisebi = connection.execute(stmt_reisebi).fetchall()
-    reisebi = pd.DataFrame(results_reisebi)
-    reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
+    # #reisebi query
+    # reisebi_table = Table('reis', metadata, autoload=True,
+    #                       autoload_with=engine)
+    # stmt_reisebi = select([reisebi_table])
+    # results_reisebi = connection.execute(stmt_reisebi).fetchall()
+    # reisebi = pd.DataFrame(results_reisebi)
+    # reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
+    #                    'max_speed',
+    #                    'driver', 'fuel_consumed', 'quantity','service_center','region']
+    # del reisebi['id']
+    reisebi_table = Table('reis', metadata, autoload=True,autoload_with=engine)
+    stmt = select([reisebi_table]).where(and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.region == reg , reisebi_table.c.service_center.in_(sc)))
+    result = connection.execute(stmt).fetchall()
+    reisebi = pd.DataFrame(result)
+    reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration',
+                       'milage',
                        'max_speed',
                        'driver', 'fuel_consumed', 'quantity','service_center','region']
     del reisebi['id']
 
+    # #skip query
+    # skip_table = Table('skip', metadata, autoload=True,
+    #                       autoload_with=engine)
+    # stmt_skip = select([skip_table.columns.plate,skip_table.columns.start_date_time])
+    # results_skip = connection.execute(stmt_skip).fetchall()
+    # skip = pd.DataFrame(results_skip)
+    # skip.columns = ['plate', 'start_date_time']
 
     #skip query
     skip_table = Table('skip', metadata, autoload=True,
-                          autoload_with=engine)
+                          autoload_with = engine)
     stmt_skip = select([skip_table.columns.plate,skip_table.columns.start_date_time])
     results_skip = connection.execute(stmt_skip).fetchall()
     skip = pd.DataFrame(results_skip)
@@ -84,13 +109,13 @@ def read_data():
 
 
 
-def update_read():
+def update_read(selected_region, selected_sc, start, end):
     global reisebi_data, skip_trace
-    reisebi_data, skip_trace = read_data()
+    reisebi_data, skip_trace = read_data(selected_region, selected_sc, start, end)
     print("reading done")
 
 
-reisebi_data, skip_trace = read_data()
+reisebi_data, skip_trace = read_data('აჭარა',['ბათუმი', 'რეგიონი', 'ქობულეთი', 'ხელვაჩაური'],'2021-05-01','2021-06-12')
 
 
 layout = dbc.Container([
@@ -124,7 +149,7 @@ layout = dbc.Container([
         html.Br(),
         dcc.Dropdown(
                 id='region_dropdown',
-                options=[{'label': s, 'value': s} for s in sorted(reisebi_data['region'].dropna().unique())],
+                options=[{'label': s, 'value': s} for s in sorted(menu['region'].dropna().unique())],
                 # multi=True,
                 value='აჭარა',
                 clearable=False
@@ -200,8 +225,11 @@ dbc.Col([
     Output('sc_dropdown', 'options'),
     Input('region_dropdown', 'value'),
 )
+# def get_sc_options(region_dropdown):
+#     region_un = reisebi_data[reisebi_data['region'] == region_dropdown]
+#     return [{'label':i, 'value':i} for i in sorted(region_un.service_center.unique())]
 def get_sc_options(region_dropdown):
-    region_un = reisebi_data[reisebi_data['region'] == region_dropdown]
+    region_un = menu[menu['region'] == region_dropdown]
     return [{'label':i, 'value':i} for i in sorted(region_un.service_center.unique())]
 
 
@@ -221,8 +249,10 @@ def get_sc(sc_drop):
     Input('interval_pg', 'n_intervals')
 )
 def update_rows(selected_region, selected_sc, start, end,n_intervals):
-    data = reisebi_data[(reisebi_data.region == selected_region) & (reisebi_data.service_center.isin(selected_sc)) & ((reisebi_data.start_date_time >= start) & (reisebi_data.start_date_time <= end))]
-    return data.to_dict('records')
+    update_read(selected_region, selected_sc, start, end)
+    print(selected_region, selected_sc, start, end)
+    #data = reisebi_data[(reisebi_data.region == selected_region) & (reisebi_data.service_center.isin(selected_sc)) & ((reisebi_data.start_date_time >= start) & (reisebi_data.start_date_time <= end))]
+    return reisebi_data.to_dict('records')
 
 @app.callback(
     [Output('placeholder', 'children'),
@@ -254,7 +284,7 @@ def df_to_csv(n_clicks, n_intervals,slctd_row_indices, dataset, s):
         metadata = MetaData()
         #connection = engine.connect()
         skip_trace.to_sql('skip', connection, if_exists='append', index=False)
-        update_read()
+        #update_read()
         return output, s
     elif input_triggered == 'interval' and s > 0:
         s = s-1

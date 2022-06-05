@@ -7,7 +7,7 @@ from app import app
 from app import server
 
 # Connect to your app pages
-from apps import drivers,skip_trace #,main,service,cars
+from apps import drivers,main#,skip_trace #,service,cars
 
 
 app.layout = html.Div([
