@@ -12,9 +12,12 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from sqlalchemy.sql import select
 from sqlalchemy import and_
-from app import connection, engine
+from app import connection, engine, db
+
 
 # app requires "pip install psycopg2" as well
+
+
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -33,7 +36,11 @@ stmt_menu = select([menu_table])
 results_skip = connection.execute(stmt_menu).fetchall()
 menu = pd.DataFrame(results_skip)
 menu.columns = ['region', 'service_center']
-# print(reisebi_data, eco_data, skip_trace)
+#print(reisebi_data, eco_data, skip_trace)
+
+# table = "menu"
+# sel = f"select * from {table}"
+# menu = pd.read_sql(sel, con=db.engine)
 
 def read_data(reg, sc, start, end):
 
@@ -41,18 +48,26 @@ def read_data(reg, sc, start, end):
 
 
     # #reisebi query
-    # reisebi_table = Table('reis', metadata, autoload=True,
-    #                       autoload_with=engine)
-    # stmt_reisebi = select([reisebi_table])
-    # results_reisebi = connection.execute(stmt_reisebi).fetchall()
-    # reisebi = pd.DataFrame(results_reisebi)
-    # reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
-    #                    'max_speed',
-    #                    'driver', 'fuel_consumed', 'quantity','service_center','region']
-    # del reisebi['id']
+    #  reisebi_table = Table('reis', metadata, autoload=True,
+    #                        autoload_with=db.engine)
+    #  stmt_reisebi = select([reisebi_table])
+    #  results_reisebi = connection.execute(stmt_reisebi).fetchall()
+    #  reisebi = pd.DataFrame(results_reisebi)
+    #  reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
+    #                     'max_speed',
+    #                     'driver', 'fuel_consumed', 'quantity','service_center','region']
+    #  del reisebi['id']
+
     reisebi_table = Table('reis', metadata, autoload=True,autoload_with=engine)
     stmt = select([reisebi_table]).where(and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.region == reg , reisebi_table.c.service_center.in_(sc)))
     result = connection.execute(stmt).fetchall()
+
+    #sel1 = f"select * from {table1} where start_time>={start} and end_time<={end} and region = {reg}"
+    # sel1 = f"select * from reis"
+    # reisebi = pd.read_sql_query(sql =sel1, con=db.engine)
+
+
+
     reisebi = pd.DataFrame(result)
     reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration',
                        'milage',
@@ -75,6 +90,9 @@ def read_data(reg, sc, start, end):
     results_skip = connection.execute(stmt_skip).fetchall()
     skip = pd.DataFrame(results_skip)
     skip.columns = ['plate', 'start_date_time']
+
+    # sel2 = '''select plate, start_date_time from skip'''
+    # skip = pd.read_sql_query(sel2, con=db.engine)
 
     # # sc mapping
     # sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
@@ -117,6 +135,44 @@ def update_read(selected_region, selected_sc, start, end):
 
 reisebi_data, skip_trace = read_data('აჭარა',['ბათუმი', 'რეგიონი', 'ქობულეთი', 'ხელვაჩაური'],'2021-05-01','2021-06-12')
 
+
+class detailed(db.Model):
+    __tablename__ = 'detailed'
+
+
+    plate = db.Column(db.String(40), nullable=False,primary_key=True)
+    start_date_time = db.Column(db.Text, nullable=False)
+    start_location = db.Column(db.DateTime, nullable=False)
+    end_date_time = db.Column(db.DateTime, nullable=False)
+    end_location = db.Column(db.Text, nullable=False)
+    duration = db.Column(db.Text, nullable=False)
+    milage = db.Column(db.Float, nullable=False)
+    max_speed = db.Column(db.Integer, nullable=False)
+    driver = db.Column(db.Text, nullable=False)
+    fuel_consumed = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    service_center = db.Column(db.Text, nullable=False)
+    region = db.Column(db.Text, nullable=False)
+
+    def __init__(self, plate, start_date_time, start_location, end_date_time, end_location, duration, milage, max_speed, driver, fuel_consumed,
+                 quantity, service_center, region):
+        self.plate = plate
+        self.start_date_time = start_date_time
+        self.start_location=start_location
+        self.end_date_time=end_date_time
+        self.end_location=end_location
+        self.duration=duration
+        self.milage=milage
+        self.max_speed=max_speed
+        self.driver=driver
+        self.fuel_consumed=fuel_consumed
+        self.quantity=quantity
+        self.service_center=service_center
+        self.region=region
+
+
+
+# detailed.query.all()
 
 layout = dbc.Container([
     dcc.Interval(id='interval_pg', interval=86400000*7, n_intervals=0),  # activated once/week or when page refreshed
@@ -281,9 +337,10 @@ def df_to_csv(n_clicks, n_intervals,slctd_row_indices, dataset, s):
         #SQL connection
         #engine = sqlalchemy.create_engine('postgresql://oswrsssbmcdtsa:ad6cca6bc8a6d58a80313746f2f7ad22b12ae65d7f75b447f7b785b27845d9e8@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01')
 
-        metadata = MetaData()
+        #metadata = MetaData()
         #connection = engine.connect()
-        skip_trace.to_sql('skip', connection, if_exists='append', index=False)
+        #skip_trace.to_sql('skip', connection, if_exists='append', index=False)
+        skip_trace.to_sql("skip", con=db.engine, if_exists='append', index=False)
         #update_read()
         return output, s
     elif input_triggered == 'interval' and s > 0:

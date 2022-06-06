@@ -12,8 +12,9 @@ from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from dash_table.Format import Format, Scheme, Trim
 from app import connection, engine
+from flask_sqlalchemy import SQLAlchemy
 
-
+db = SQLAlchemy(app.server)
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (

@@ -7,8 +7,8 @@ from app import app
 from app import server
 
 # Connect to your app pages
-from apps import skip_trace #drivers, #main# #,service,cars
-
+# from apps import skip_trace ,drivers, main,service,cars
+from apps import main, drivers
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -28,15 +28,15 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/apps/main':
         return main.layout
-    if pathname == '/apps/service':
-        return service.layout
-    if pathname == '/apps/cars':
-        return cars.layout
-    if pathname == '/apps/drivers':
+    # if pathname == '/apps/service':
+    #     return service.layout
+    # if pathname == '/apps/cars':
+    #     return cars.layout
+    elif pathname == '/apps/drivers':
         return drivers.layout
-
-    else:
-        return skip_trace.layout
+    #
+    # else:
+    #     return skip_trace.layout
 
 
 if __name__ == '__main__':

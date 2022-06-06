@@ -88,14 +88,8 @@ layout = dbc.Container([
 @app.callback(Output('postgres_datatable3', 'children'),
               [Input('interval_pg3', 'n_intervals')])
 def populate_datatable(n_intervals):
-   # metadata = MetaData()
 
     df = pd.read_sql_table('skip', con=db.engine)
-    # skip_table = Table('skip', metadata, autoload=True,
-    #                    autoload_with=engine)
-    # skip_sel = select([skip_table])
-    # skip_fetch = connection.execute(skip_sel).fetchall()
-    # df = pd.DataFrame(skip_fetch)
     df = df.drop_duplicates()
     return [
         dash_table.DataTable(
