@@ -23,7 +23,7 @@ connection = engine.connect()
 
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-auth = dash_auth.BasicAuth(
-    app,
-    {'socar': '123456'}
-)
+# auth = dash_auth.BasicAuth(
+#     app,
+#     {'socar': '123456'}
+# )
