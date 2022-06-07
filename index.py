@@ -4,7 +4,7 @@ from dash.dependencies import Input, Output
 
 # Connect to main app.py file
 from app import app
-
+from app import server
 
 # Connect to your app pages
 # from apps import skip_trace ,drivers, main,service,cars

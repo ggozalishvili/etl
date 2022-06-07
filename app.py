@@ -5,6 +5,7 @@ import dash_auth
 # meta_tags are required for the app layout to be mobile responsive
 from flask_sqlalchemy import SQLAlchemy
 
+from apps.db_connection import PostgresConnection
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
@@ -25,5 +26,6 @@ app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # auth = dash_auth.BasicAuth(
 #     app,
-#     {'socar': '123456'}
+#     {'bugsbunny': 'topsecret',
+#      'pajaroloco': 'unsecreto'}
 # )

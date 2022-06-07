@@ -6,7 +6,8 @@ import pathlib
 import dash_table
 import dash
 import dash_bootstrap_components as dbc
-
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, MetaData, select, Table
 from app import app,connection, engine, db
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
