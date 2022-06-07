@@ -3,7 +3,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import pandas as pd
 import pathlib
-import sqlalchemy
 from sqlalchemy import create_engine, MetaData, select, Table
 from app import app
 import dash_table
@@ -29,13 +28,14 @@ PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
 # menu query
-metadata = MetaData()
-menu_table = Table('menu', metadata, autoload=True,
-                   autoload_with=engine)
-stmt_menu = select([menu_table])
-results_skip = connection.execute(stmt_menu).fetchall()
-menu = pd.DataFrame(results_skip)
-menu.columns = ['region', 'service_center']
+menu = pd.read_sql_table('menu', con=db.engine)
+# metadata = MetaData()
+# menu_table = Table('menu', metadata, autoload=True,
+#                     autoload_with=engine)
+# stmt_menu = select([menu_table])
+# results_menu = connection.execute(stmt_menu).fetchall()
+# menu = pd.DataFrame(results_menu)
+# menu.columns = ['region', 'service_center']
 #print(reisebi_data, eco_data, skip_trace)
 
 # table = "menu"
@@ -46,28 +46,9 @@ def read_data(reg, sc, start, end):
 
     metadata = MetaData()
 
-
-    # #reisebi query
-    #  reisebi_table = Table('reis', metadata, autoload=True,
-    #                        autoload_with=db.engine)
-    #  stmt_reisebi = select([reisebi_table])
-    #  results_reisebi = connection.execute(stmt_reisebi).fetchall()
-    #  reisebi = pd.DataFrame(results_reisebi)
-    #  reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage',
-    #                     'max_speed',
-    #                     'driver', 'fuel_consumed', 'quantity','service_center','region']
-    #  del reisebi['id']
-
     reisebi_table = Table('reis', metadata, autoload=True,autoload_with=engine)
     stmt = select([reisebi_table]).where(and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.region == reg , reisebi_table.c.service_center.in_(sc)))
     result = connection.execute(stmt).fetchall()
-
-    #sel1 = f"select * from {table1} where start_time>={start} and end_time<={end} and region = {reg}"
-    # sel1 = f"select * from reis"
-    # reisebi = pd.read_sql_query(sql =sel1, con=db.engine)
-
-
-
     reisebi = pd.DataFrame(result)
     reisebi.columns = ['id', 'plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration',
                        'milage',
@@ -75,37 +56,17 @@ def read_data(reg, sc, start, end):
                        'driver', 'fuel_consumed', 'quantity','service_center','region']
     del reisebi['id']
 
-    # #skip query
+    #skip query
     # skip_table = Table('skip', metadata, autoload=True,
-    #                       autoload_with=engine)
+    #                       autoload_with = engine)
     # stmt_skip = select([skip_table.columns.plate,skip_table.columns.start_date_time])
     # results_skip = connection.execute(stmt_skip).fetchall()
+    skip = pd.read_sql_table('skip', con=db.engine)
+
+
     # skip = pd.DataFrame(results_skip)
-    # skip.columns = ['plate', 'start_date_time']
+    skip= skip[['plate', 'start_date_time']]
 
-    #skip query
-    skip_table = Table('skip', metadata, autoload=True,
-                          autoload_with = engine)
-    stmt_skip = select([skip_table.columns.plate,skip_table.columns.start_date_time])
-    results_skip = connection.execute(stmt_skip).fetchall()
-    skip = pd.DataFrame(results_skip)
-    skip.columns = ['plate', 'start_date_time']
-
-    # sel2 = '''select plate, start_date_time from skip'''
-    # skip = pd.read_sql_query(sel2, con=db.engine)
-
-    # # sc mapping
-    # sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
-    #                    autoload_with=engine)
-    # stmt_sc_mapping = select([sc_mapping_table])
-    # results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
-    # sc_mapping = pd.DataFrame(results_sc_mapping)
-    # sc_mapping.columns = ['plate', 'service_center','region']
-
-
-    # reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
-    # reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
-    # # eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
     skip['start_date_time'] = pd.to_datetime(skip['start_date_time'], format='%Y.%m.%dT%H:%M:%S')
     # reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
 
@@ -120,9 +81,7 @@ def read_data(reg, sc, start, end):
             .query('_merge == "left_only"')
             .drop(columns='_merge')
     )
-    # reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
-    # reisebi_final_data['id'] = reisebi_final_data['plate']
-    # reisebi_final_data.set_index('id', inplace=True, drop=False)
+
     return data_reisebi, skipped
 
 
@@ -189,11 +148,11 @@ layout = dbc.Container([
                 is_RTL=False,  # True or False for direction of calendar
                 clearable=True,  # whether or not the user can clear the dropdown
                 number_of_months_shown=1,  # number of months shown when calendar is open
-                min_date_allowed=dt(2022, 4, 1),  # minimum date allowed on the DatePickerRange component
-                max_date_allowed=dt(2022, 5, 1),  # maximum date allowed on the DatePickerRange component
+                min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
+                max_date_allowed=dt(2022, 6, 1),  # maximum date allowed on the DatePickerRange component
                 initial_visible_month=dt(2022, 5, 1),  # the month initially presented when the user opens the calendar
-                start_date=dt(2022, 4, 1).date(),
-                end_date=dt(2022, 5, 1).date(),
+                start_date=dt(2022, 5, 1).date(),
+                end_date=dt(2022, 6, 1).date(),
                 display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
                 month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
                 minimum_nights=2,  # minimum number of days between start and end date
@@ -351,6 +310,7 @@ def df_to_csv(n_clicks, n_intervals,slctd_row_indices, dataset, s):
             return no_output, s
     elif s == 0:
         return no_output, s
+
 
 
 

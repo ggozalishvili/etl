@@ -29,36 +29,45 @@ DATA_PATH = PATH.joinpath("../datasets").resolve()
 
 def service_calculation():
     #engine = sqlalchemy.create_engine('postgresql://oswrsssbmcdtsa:ad6cca6bc8a6d58a80313746f2f7ad22b12ae65d7f75b447f7b785b27845d9e8@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01')
-    metadata = MetaData()
+    # metadata = MetaData()
     #connection = engine.connect()
 
-    odo_table = Table('odo', metadata, autoload=True,
-                      autoload_with=engine)
-    stmt_odo = select([odo_table.columns.plate, odo_table.columns.calc_odo])
-    results_odo = connection.execute(stmt_odo).fetchall()
-    odo = pd.DataFrame(results_odo)
-    odo.columns = ['plate', 'odometer']
-
+    # odo_table = Table('odo', metadata, autoload=True,
+    #                   autoload_with=engine)
+    # stmt_odo = select([odo_table.columns.plate, odo_table.columns.calc_odo])
+    # results_odo = connection.execute(stmt_odo).fetchall()
+    # odo = pd.DataFrame(results_odo)
+    # odo.columns = ['plate', 'odometer']
+    odo = pd.read_sql_table('odo', con=db.engine)
+    odo = odo[['plate', 'calc_odo']]
+    odo = odo.reset_index(drop=True)
+    odo.rename(columns={'plate': 'plate', 'calc_odo': 'odometer'}, inplace=True)
+    #odo.columns = ['plate', 'odometer']
     # service query
-    service_table = Table('service', metadata, autoload=True,
-                          autoload_with=engine)
-    stmt_service = select([service_table])
-    results_service = connection.execute(stmt_service).fetchall()
-    service = pd.DataFrame(results_service)
-    service.columns = ['plate', 'service_odometer']
+    # service_table = Table('service', metadata, autoload=True,
+    #                       autoload_with=engine)
+    # stmt_service = select([service_table])
+    # results_service = connection.execute(stmt_service).fetchall()
+    # service = pd.DataFrame(results_service)
+    # service.columns = ['plate', 'service_odometer']
+
+    service = pd.read_sql_table('service', con=db.engine)
+    service = service.reset_index(drop=True)
+    service.rename(columns={'plate': 'plate', 'odometer': 'service_odometer'}, inplace=True)
 
     service_joined = odo.merge(service, on='plate', how='left')
-    # service_joined['odometer'] = service_joined['odometer'].fillna(0).astype(int)
-    # service_joined['service_odometer'] = service_joined['service_odometer'].fillna(0).astype(int)
-    service_joined['remaining_km'] = service_joined['service_odometer'] - service_joined['odometer']
+    service_joined['odometer'] = service_joined['odometer'].fillna(0).astype(int)
+    service_joined['service_odometer'] = service_joined['service_odometer'].fillna(0).astype(int)
+   # service_joined['remaining_km'] = service_joined['service_odometer'] - service_joined['odometer']
+    service_joined['remaining_km'] = service_joined['service_odometer'].sub(service_joined['odometer'], fill_value=0)
 
-    sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
-                             autoload_with=engine)
-    stmt_sc_mapping = select([sc_mapping_table])
-    results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
-    sc_mapping = pd.DataFrame(results_sc_mapping)
-    sc_mapping.columns = ['plate', 'service_center', 'region']
-
+    # sc_mapping_table = Table('sc_mapping', metadata, autoload=True,
+    #                          autoload_with=engine)
+    # stmt_sc_mapping = select([sc_mapping_table])
+    # results_sc_mapping = connection.execute(stmt_sc_mapping).fetchall()
+    # sc_mapping = pd.DataFrame(results_sc_mapping)
+    #sc_mapping.columns = ['plate', 'service_center', 'region']
+    sc_mapping = pd.read_sql_table('sc_mapping', con=db.engine)
     service_joined = service_joined.merge(sc_mapping, on='plate', how='left')
 
 

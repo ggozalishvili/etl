@@ -13,7 +13,7 @@ from sqlalchemy import and_
 from sqlalchemy.sql import select
 
 from app import app
-from app import connection, engine
+from app import connection, engine, db
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -23,6 +23,17 @@ FONT_AWESOME = (
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
+
+# menu query
+# metadata = MetaData()
+# menu_table = Table('menu', metadata, autoload=True,
+#                     autoload_with=engine)
+# stmt_menu = select([menu_table])
+# results_menu = connection.execute(stmt_menu).fetchall()
+# menu = pd.DataFrame(results_menu)
+# menu.columns = ['region', 'service_center']
+#print(reisebi_data, eco_data, skip_trace)
+menu = pd.read_sql_table('menu', con=db.engine)
 
 
 def read_data(reg, sc, start, end):

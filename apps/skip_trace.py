@@ -1,18 +1,14 @@
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import plotly.express as px
 import pandas as pd
 import pathlib
-from app import app
 import dash_table
 import dash
-from datetime import datetime as dt
 import dash_bootstrap_components as dbc
 from flask_sqlalchemy import SQLAlchemy
-#from flask import Flask
-#from app import connection, engine
 from sqlalchemy import create_engine, MetaData, select, Table
+from app import app,connection, engine, db
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -23,7 +19,7 @@ FONT_AWESOME = (
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
-db = SQLAlchemy(app.server)
+#db = SQLAlchemy(app.server)
 
 
 class Product(db.Model):
@@ -90,6 +86,14 @@ layout = dbc.Container([
 def populate_datatable(n_intervals):
 
     df = pd.read_sql_table('skip', con=db.engine)
+    # metadata = MetaData()
+    # skip_table = Table('skip', metadata, autoload=True,
+    #                    autoload_with=engine)
+    # stmt_skip = select([skip_table])
+    # results_skip = connection.execute(stmt_skip).fetchall()
+    # skip_pd = pd.DataFrame(results_skip)
+    # skip_pd.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed',
+    #                    'driver', 'fuel_consumed','quantity', 'service_center', 'region']
     df = df.drop_duplicates()
     return [
         dash_table.DataTable(
@@ -147,7 +151,8 @@ def df_to_csv(n_clicks, n_intervals, dataset, s):
         pg = pd.DataFrame(dataset)
         # pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
         #          'quantity', 'service_center', 'region']
-        pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
+
+        #pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
         return output, s
     elif input_triggered == 'interval3' and s > 0:
         s = s - 1
