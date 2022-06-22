@@ -230,9 +230,9 @@ def update_aggregate_drv_rows(start, end, n_intervals):
     )
     agr_raisebi = c.reset_index()
     data_e=eco_data[(eco_data['driver'] !='-----')]
-    agr_eco = data_e.pivot_table(index=['region','service_center','driver'], columns='penalty_type', values=['penalty_points'], fill_value=0, aggfunc=np.sum)
+    data_ec = data_e[(data_e['penalty_type'] !='-----')]
+    agr_eco = data_ec.pivot_table(index=['region','service_center','driver'], columns='penalty_type', values=['penalty_points'], fill_value=0, aggfunc=np.sum)
     agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
-
     agr_to_table=agr_to_table.fillna(0)
     agr_to_table=agr_to_table.astype(int, copy=True, errors='ignore')
     agr_to_table.columns=['region','service_center','driver','milage','max_speed','speed_limit_exceed','harsh_a_points','harsh_b_points','harsh_c_points','v_harsh_a_points','v_harsh_b_points','v_harsh_c_points']
