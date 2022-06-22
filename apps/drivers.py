@@ -24,22 +24,12 @@ FONT_AWESOME = (
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 
-# menu query
-# metadata = MetaData()
-# menu_table = Table('menu', metadata, autoload=True,
-#                     autoload_with=engine)
-# stmt_menu = select([menu_table])
-# results_menu = connection.execute(stmt_menu).fetchall()
-# menu = pd.DataFrame(results_menu)
-# menu.columns = ['region', 'service_center']
-#print(reisebi_data, eco_data, skip_trace)
+
 menu = pd.read_sql_table('menu', con=db.engine)
 
 
 def read_data(reg, sc, start, end):
-    # engine = sqlalchemy.create_engine('postgresql://oswrsssbmcdtsa:ad6cca6bc8a6d58a80313746f2f7ad22b12ae65d7f75b447f7b785b27845d9e8@ec2-176-34-211-0.eu-west-1.compute.amazonaws.com:5432/d6j6etm7h53s01')
     metadata = MetaData()
-    # connection = engine.connect()
 
     # reisebi query
     reisebi_table = Table('reis', metadata, autoload=True, autoload_with=engine)
@@ -73,15 +63,8 @@ def read_data(reg, sc, start, end):
     skip = pd.DataFrame(results_skip)
     skip.columns = ['plate', 'start_date_time']
 
-    # reisebi['end_date_time'] = pd.to_datetime(reisebi['end_date_time'], format='%d.%m.%Y %H:%M:%S')
-    # reisebi['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
-    # eco['start_date_time'] = pd.to_datetime(reisebi['start_date_time'], format='%d.%m.%Y %H:%M:%S')
-    skip['start_date_time'] = pd.to_datetime(skip['start_date_time'], format='%Y.%m.%dT%H:%M:%S')
-    # reisebi_ag_data = reisebi.merge(sc_mapping, on='plate', how='left')
-    # eco_ag_data = eco.merge(sc_mapping, on='plate', how='left')
-    # eco_ag_data['id'] = eco_ag_data['plate']
 
-    # eco_ag_data.set_index('id', inplace=True, drop=False)
+    skip['start_date_time'] = pd.to_datetime(skip['start_date_time'], format='%Y.%m.%dT%H:%M:%S')
 
     skipped = skip.drop_duplicates()
 
@@ -93,9 +76,7 @@ def read_data(reg, sc, start, end):
             .query('_merge == "left_only"')
             .drop(columns='_merge')
     )
-    # reisebi_final_data = data_reisebi.merge(sc_mapping, on='plate', how='left')
-    # reisebi_final_data['id'] = reisebi_final_data['plate']
-    # reisebi_final_data.set_index('id', inplace=True, drop=False)
+
     return data_reisebi, eco, skipped
 
 
@@ -116,7 +97,7 @@ stmt_menu = select([menu_table])
 results_skip = connection.execute(stmt_menu).fetchall()
 menu = pd.DataFrame(results_skip)
 menu.columns = ['region', 'service_center']
-# print(reisebi_data, eco_data, skip_trace)
+
 
 
 layout = dbc.Container([
@@ -136,10 +117,10 @@ layout = dbc.Container([
             clearable=True,  # whether or not the user can clear the dropdown
             number_of_months_shown=1,  # number of months shown when calendar is open
             min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
-            max_date_allowed=dt(2022, 6, 7),  # maximum date allowed on the DatePickerRange component
-            initial_visible_month=dt(2021, 6, 1),  # the month initially presented when the user opens the calendar
+            max_date_allowed=dt(2022, 7, 1),  # maximum date allowed on the DatePickerRange component
+            initial_visible_month=dt(2022, 1, 1),  # the month initially presented when the user opens the calendar
             start_date=dt(2022, 6, 1).date(),
-            end_date=dt(2022, 6, 7).date(),
+            end_date=dt(2022, 7, 1).date(),
             display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
             month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
             minimum_nights=2,  # minimum number of days between start and end date
@@ -306,7 +287,7 @@ def update_aggregate_drv_rows(selected_region, selected_sc, start, end, n_interv
     c = reisebi_data.groupby(['driver', 'plate']).agg(
         milage=('milage', sum),
         max_speed=('max_speed', max),
-        speed_limit_exceed=("max_speed", lambda x: x[x >= 100].count())
+        speed_limit_exceed=("max_speed", lambda x: x[x >= 90].count())
     )
     agr_raisebi = c.reset_index()
     agr_eco = eco_data.groupby('driver').agg(

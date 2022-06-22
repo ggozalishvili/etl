@@ -11,8 +11,8 @@ from sqlalchemy.types import Integer,DateTime,String
 
 
 
-#engine = sqlalchemy.create_engine('postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm')
-engine = sqlalchemy.create_engine('postgresql://postgres:123456@localhost:5432/geogps')
+engine = sqlalchemy.create_engine('postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm')
+#engine = sqlalchemy.create_engine('postgresql://postgres:123456@localhost:5432/geogps')
 metadata = MetaData()
 connection = engine.connect()
 
@@ -40,12 +40,12 @@ today = datetime.date.today()
 
 
 
-#stmt_last_date = 'SELECT distinct start_time FROM reis order by start_time desc limit 1'
-#results = connection.execute(stmt_last_date).scalar()
-#print(results)
-last_date_synced=datetime.datetime.strptime("01.01.2022 00:00:00", '%d.%m.%Y %H:%M:%S')
-last_date_synced=last_date_synced.date()
-
+stmt_last_date = 'SELECT distinct start_time FROM reis order by start_time desc limit 1'
+results = connection.execute(stmt_last_date).scalar()
+print(results)
+#last_date_synced=datetime.datetime.strptime("01.01.2022 00:00:00", '%d.%m.%Y %H:%M:%S')
+last_date_synced=results.date()
+print(last_date_synced)
 
 def gps_api():
   global df_reis, df_eco, df_odo
