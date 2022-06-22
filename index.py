@@ -8,7 +8,7 @@ from app import server
 
 # Connect to your app pages
 # from apps import skip_trace ,drivers, main,service,cars
-from apps import main,skip_trace,drivers,service#,drv_report#,cars
+from apps import main,skip_trace,drivers,service,drv_report#,cars
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),

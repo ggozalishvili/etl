@@ -86,7 +86,7 @@ def update_read(start, end):
     print("reading done")
 
 
-reisebi_data, eco_data, skip_trace = read_data('2022-05-01',
+reisebi_data, eco_data, skip_trace = read_data('2022-05-22',
                                                '2022-06-01')
 
 # menu query
