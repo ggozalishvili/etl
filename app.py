@@ -12,10 +12,10 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheet
                             'content': 'width=device-width, initial-scale=1.0'}]
                 )
 server = app.server
-#app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:123456@localhost/geogps"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:123456@localhost/geogps"
 
 # for your home PostgreSQL test table
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm"
+#app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm"
 
 
 db = SQLAlchemy(app.server)

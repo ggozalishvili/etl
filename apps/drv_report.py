@@ -101,8 +101,6 @@ def read_data(start, end):
     print(agr_to_table.head())
     del [[eco]]
     gc.collect()
-    # df_1 = pd.DataFrame()
-    # df_2 = pd.DataFrame()
     return agr_to_table
 
 
@@ -154,6 +152,23 @@ layout = dbc.Container([
         ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
     dbc.Row([
         dbc.Col([
+            html.Br(),
+            ], width={'size': 12, 'offset': 0}),
+            ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
+    dbc.Row([
+        dbc.Col([
+            html.Br(),
+        ], width={'size': 12, 'offset': 0}),
+    ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
+    dbc.Row([
+        dbc.Col([
+            html.Br(),
+        ], width={'size': 12, 'offset': 0}),
+    ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
+    dbc.Row([
+        dbc.Col([
+            html.Br(),
+
             html.H3("სიჩქარის გადაჭარბება,გარბენი მძღოლების მიხედვით", className='text-center text-primary mb-4'),
             html.Br(),
             dash_table.DataTable(

@@ -44,16 +44,16 @@ def read_data(reg, sc, start, end):
                        'driver', 'fuel_consumed', 'quantity', 'service_center', 'region']
     del reisebi['id']
 
-    # eco query
-    eco_table = Table('eco', metadata, autoload=True, autoload_with=engine)
-    stmt_eco = select([eco_table]).where(
-        and_(eco_table.c.start_time >= start, eco_table.c.region == reg,
-             eco_table.c.service_center.in_(sc)))
-    results_eco = connection.execute(stmt_eco).fetchall()
-    eco = pd.DataFrame(results_eco)
-    eco.columns = ['id', 'plate', 'driver', 'start_date_time', 'location', 'penalty_type', 'penalty_points', 'quantity',
-                   'eco_milage', 'service_center', 'region']
-    del eco['id']
+    ## eco query
+    # eco_table = Table('eco', metadata, autoload=True, autoload_with=engine)
+    # stmt_eco = select([eco_table]).where(
+    #     and_(eco_table.c.start_time >= start, eco_table.c.region == reg,
+    #          eco_table.c.service_center.in_(sc)))
+    # results_eco = connection.execute(stmt_eco).fetchall()
+    # eco = pd.DataFrame(results_eco)
+    # eco.columns = ['id', 'plate', 'driver', 'start_date_time', 'location', 'penalty_type', 'penalty_points', 'quantity',
+    #                'eco_milage', 'service_center', 'region']
+    # del eco['id']
 
     # skip query
     skip_table = Table('skip', metadata, autoload=True,
@@ -68,7 +68,7 @@ def read_data(reg, sc, start, end):
 
     skipped = skip.drop_duplicates()
 
-    data_reisebi = (
+    reisebi = (
         reisebi.merge(skipped,
                       on=['plate', 'start_date_time'],
                       how='left',
@@ -77,16 +77,16 @@ def read_data(reg, sc, start, end):
             .drop(columns='_merge')
     )
 
-    return data_reisebi, eco, skipped
+    return reisebi, skipped # eco,
 
 
 def update_read(selected_region, selected_sc, start, end):
-    global reisebi_data, eco_data, skip_trace
-    reisebi_data, eco_data, skip_trace = read_data(selected_region, selected_sc, start, end)
+    global reisebi_data, skip_trace # eco_data,
+    reisebi_data, skip_trace = read_data(selected_region, selected_sc, start, end)
     print("reading done")
 
 
-reisebi_data, eco_data, skip_trace = read_data('აჭარა', ['ბათუმი', 'რეგიონი', 'ქობულეთი', 'ხელვაჩაური'], '2021-05-01',
+reisebi_data, skip_trace = read_data('აჭარა', ['ბათუმი', 'რეგიონი', 'ქობულეთი', 'ხელვაჩაური'], '2021-05-01',
                                                '2021-06-12')
 
 # menu query
@@ -156,7 +156,7 @@ layout = dbc.Container([
                     dict(id='milage', name='milage', type='numeric', format=Format(precision=2, scheme=Scheme.fixed)),
                     {'id': "max_speed", 'name': "max_speed"},
                     {'id': "speed_limit_exceed", 'name': "speed_limit_exceed"},
-                    {'id': "penalty_points", 'name': "penalty_points"},
+                    #{'id': "penalty_points", 'name': "penalty_points"},
                     # {'id': "id", 'name': "id"},
                 ],
                 editable=False,  # allow editing of data inside all cells
@@ -284,16 +284,16 @@ def update_aggregate_drv_rows(selected_region, selected_sc, start, end, n_interv
     # a = data_reis[['service_center', 'driver', 'plate']].reset_index()
     # del a['index']
     # b=a.drop_duplicates()
-    c = reisebi_data.groupby(['driver', 'plate']).agg(
+    agr_to_table = reisebi_data.groupby(['driver', 'plate']).agg(
         milage=('milage', sum),
         max_speed=('max_speed', max),
         speed_limit_exceed=("max_speed", lambda x: x[x >= 90].count())
     )
-    agr_raisebi = c.reset_index()
-    agr_eco = eco_data.groupby('driver').agg(
-        penalty_points=('penalty_points', sum),
-    )
-    agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
+    agr_to_table = agr_to_table.reset_index()
+    # agr_eco = eco_data.groupby('driver').agg(
+    #     penalty_points=('penalty_points', sum),
+    # )
+    # agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
 
     agr_to_table['id'] = agr_to_table['plate'] + '/' + agr_to_table['driver']
     agr_to_table.set_index('id', inplace=True, drop=False)
