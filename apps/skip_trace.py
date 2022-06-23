@@ -73,7 +73,7 @@ layout = dbc.Container([
     ]),
     dbc.Row([
     # html.Button('Add Row', id='editing-rows-button3', n_clicks=0),
-    html.Button('დამახსოვრება', id='save_to_postgres3', n_clicks=0),
+    # html.Button('დამახსოვრება', id='save_to_postgres3', n_clicks=0),
     ]),
     # Create notification when saving to excel
     html.Div(id='placeholder3', children=[]),
@@ -86,14 +86,6 @@ layout = dbc.Container([
 def populate_datatable(n_intervals):
 
     df = pd.read_sql_table('skip', con=db.engine)
-    # metadata = MetaData()
-    # skip_table = Table('skip', metadata, autoload=True,
-    #                    autoload_with=engine)
-    # stmt_skip = select([skip_table])
-    # results_skip = connection.execute(stmt_skip).fetchall()
-    # skip_pd = pd.DataFrame(results_skip)
-    # skip_pd.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed',
-    #                    'driver', 'fuel_consumed','quantity', 'service_center', 'region']
     df = df.drop_duplicates()
     return [
         dash_table.DataTable(
@@ -112,7 +104,7 @@ def populate_datatable(n_intervals):
                      for x in df.columns],
             data=df.to_dict('records'),
             editable=False,
-            row_deletable=True,
+            row_deletable=False,
             filter_action="native",
             sort_action="native",  # give user capability to sort columns
             sort_mode="single",  # sort across 'multi' or 'single' columns
@@ -130,35 +122,35 @@ def populate_datatable(n_intervals):
         ),
     ]
 
-
-@app.callback(
-    [Output('placeholder3', 'children'),
-     Output("store3", "data")],
-    [Input('save_to_postgres3', 'n_clicks'),
-     Input("interval3", "n_intervals")],
-    [State('our-table3', 'data'),
-     State('store3', 'data')],
-    prevent_initial_call=True)
-def df_to_csv(n_clicks, n_intervals, dataset, s):
-    output = html.Plaintext("The data has been saved to your PostgreSQL database.",
-                            style={'color': 'green', 'font-weight': 'bold', 'font-size': 'large'})
-    no_output = html.Plaintext("", style={'margin': "0px"})
-
-    input_triggered = dash.callback_context.triggered[0]["prop_id"].split(".")[0]
-
-    if input_triggered == "save_to_postgres3":
-        s = 12
-        pg = pd.DataFrame(dataset)
-        # pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
-        #          'quantity', 'service_center', 'region']
-
-        #pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
-        return output, s
-    elif input_triggered == 'interval3' and s > 0:
-        s = s - 1
-        if s > 0:
-            return output, s
-        else:
-            return no_output, s
-    elif s == 0:
-        return no_output, s
+#
+# @app.callback(
+#     [Output('placeholder3', 'children'),
+#      Output("store3", "data")],
+#     [Input('save_to_postgres3', 'n_clicks'),
+#      Input("interval3", "n_intervals")],
+#     [State('our-table3', 'data'),
+#      State('store3', 'data')],
+#     prevent_initial_call=True)
+# def df_to_csv(n_clicks, n_intervals, dataset, s):
+#     output = html.Plaintext("The data has been saved to your PostgreSQL database.",
+#                             style={'color': 'green', 'font-weight': 'bold', 'font-size': 'large'})
+#     no_output = html.Plaintext("", style={'margin': "0px"})
+#
+#     input_triggered = dash.callback_context.triggered[0]["prop_id"].split(".")[0]
+#
+#     if input_triggered == "save_to_postgres3":
+#         s = 12
+#         pg = pd.DataFrame(dataset)
+#         pg.columns = ['plate', 'start_date_time', 'start_location', 'end_date_time', 'end_location', 'duration', 'milage', 'max_speed', 'driver', 'fuel_consumed',
+#                   'quantity', 'service_center', 'region']
+#
+#         pg.to_sql("skip", con=db.engine, if_exists='replace', index=False)
+#         return output, s
+#     elif input_triggered == 'interval3' and s > 0:
+#         s = s - 1
+#         if s > 0:
+#             return output, s
+#         else:
+#             return no_output, s
+#     elif s == 0:
+#         return no_output, s
