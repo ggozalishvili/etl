@@ -169,7 +169,7 @@ layout = dbc.Container([
         dbc.Col([
             html.Br(),
 
-            html.H3("სიჩქარის გადაჭარბება,გარბენი მძღოლების მიხედვით", className='text-center text-primary mb-4'),
+            html.H3("საჯარიმო ქულები,სიჩქარის გადაჭარბება და გარბენი მძღოლების მიხედვით", className='text-center text-primary mb-4'),
             html.Br(),
             dash_table.DataTable(
                 id='aggregate_drivers_table2',
@@ -209,7 +209,7 @@ layout = dbc.Container([
                     'minWidth': '100px', 'width': '100px', 'maxWidth': '180px',
                     'whiteSpace': 'normal'
                 },
-                page_size=2000,  # number of rows visible per page
+                page_size=200,  # number of rows visible per page
                 #style_cell={  # ensure adequate header width when text is shorter than cell's text
                 #    'minWidth': 95, 'maxWidth': 130, 'width': 105
                 #},
