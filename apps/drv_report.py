@@ -1,6 +1,5 @@
 import pathlib
 from datetime import datetime as dt
-import numpy as np
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
@@ -8,10 +7,9 @@ import dash_table
 import pandas as pd
 from dash.dependencies import Input, Output
 from dash_table.Format import Format, Scheme
-from sqlalchemy import MetaData, Table
+from sqlalchemy import MetaData, Table, case, func
 from sqlalchemy import and_
 from sqlalchemy.sql import select
-import gc as gc
 from app import app
 from app import connection, engine, db
 
@@ -33,13 +31,49 @@ def read_data(start, end):
 
     # reisebi query
     reisebi_table = Table('reis', metadata, autoload=True, autoload_with=engine)
-    stmt = select([reisebi_table.c.region,reisebi_table.c.service_center,reisebi_table.c.driver,reisebi_table.c.plate,reisebi_table.c.start_time,reisebi_table.c.milage,reisebi_table.c.max_speed]).where(
-            and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.driver !='-----'))
-    result = connection.execute(stmt).fetchall()
-    reisebi = pd.DataFrame(result)
-    reisebi.columns = ['region','service_center','driver','plate','start_date_time',
-                       'milage',
-                       'max_speed']
+
+    stmt_reis = select([reisebi_table.c.region,reisebi_table.c.service_center,reisebi_table.c.driver,
+                     (func.sum((reisebi_table.c.milage))).label('milage'),
+                     (func.max((reisebi_table.c.max_speed))).label('max_speed')])
+
+    stmt_reis = stmt_reis.where(
+             and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.driver !='-----'))
+    stmt_reis = stmt_reis.group_by(reisebi_table.columns.region, reisebi_table.columns.service_center, reisebi_table.columns.driver)
+    result_reis = connection.execute(stmt_reis).fetchall()
+    agr_reisebi = pd.DataFrame(result_reis)
+    agr_reisebi.columns = ['region','service_center','driver','milage','max_speed']
+
+    # reisebi query2
+    reisebi_table2 = Table('reis', metadata, autoload=True, autoload_with=engine)
+    stmt_reis2 = select([reisebi_table2.c.region,reisebi_table2.c.service_center,reisebi_table2.c.driver,
+                     (func.count((reisebi_table2.c.max_speed))).label('max_speed_cnt')])
+    stmt_reis2 = stmt_reis2.where(
+             and_(reisebi_table2.c.start_time >= start, reisebi_table2.c.end_time <= end, reisebi_table2.c.driver !='-----'),reisebi_table2.c.max_speed>90)
+    stmt_reis2 = stmt_reis2.group_by(reisebi_table2.columns.region, reisebi_table2.columns.service_center,
+                                   reisebi_table2.columns.driver)
+    result_reis2 = connection.execute(stmt_reis2).fetchall()
+    agr_reisebi2 = pd.DataFrame(result_reis2)
+    agr_reisebi2.columns = ['region','service_center','driver','speed_exc_cnt']
+
+
+    # stmt = select([reisebi_table.c.region,reisebi_table.c.service_center,reisebi_table.c.driver,reisebi_table.c.plate,reisebi_table.c.start_time,reisebi_table.c.milage,reisebi_table.c.max_speed]).where(
+    #         and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.driver !='-----'))
+    # result = connection.execute(stmt).fetchall()
+    # reisebi = pd.DataFrame(result)
+    # reisebi.columns = ['region','service_center','driver','plate','start_date_time',
+    #                    'milage',
+    #                    'max_speed']
+
+    agr_reisebi=agr_reisebi.merge(agr_reisebi2, on=['region','service_center','driver'], how='left')
+    # reisebi = (
+    #      agr_reisebi.merge(agr_reisebi2,
+    #                    on=['service_center','driver'],
+    #                    how='left',
+    #                    indicator=True)
+    #          .query('_merge == "left_only"')
+    #          .drop(columns='_merge').fillna(0))
+
+
 
 
     # skip query
@@ -55,52 +89,102 @@ def read_data(start, end):
 
     skipped = skip.drop_duplicates()
 
-    reisebi = (
-        reisebi.merge(skipped,
-                      on=['plate', 'start_date_time'],
-                      how='left',
-                      indicator=True)
-            .query('_merge == "left_only"')
-            .drop(columns='_merge')
-    )
-    agr_raisebi = reisebi.groupby(['region', 'service_center', 'driver']).agg(
-        milage=('milage', sum),
-        max_speed=('max_speed', max),
-        speed_limit_exceed=("max_speed", lambda x: x[x >= 90].count())
 
-    )
-    agr_raisebi = agr_raisebi.reset_index()
-    # data_e=eco_data[(eco_data['driver'] !='-----')]
-    # data_ec = data_e[(data_e['penalty_type'] !='-----')]
-    del [[reisebi]]
-    gc.collect()
+
+    # reisebi = (
+    #     reisebi.merge(skipped,
+    #                   on=['plate', 'start_date_time'],
+    #                   how='left',
+    #                   indicator=True)
+    #         .query('_merge == "left_only"')
+    #         .drop(columns='_merge')
+    # )
+    # agr_raisebi = reisebi.groupby(['region', 'service_center', 'driver']).agg(
+    #     milage=('milage', sum),
+    #     max_speed=('max_speed', max),
+    #     speed_limit_exceed=("max_speed", lambda x: x[x >= 90].count())
+    #
+    # )
+    # agr_raisebi = agr_raisebi.reset_index()
+    # # data_e=eco_data[(eco_data['driver'] !='-----')]
+    # # data_ec = data_e[(data_e['penalty_type'] !='-----')]
+    # del [[reisebi]]
+    # gc.collect()
 
 
     # eco query
     eco_table = Table('eco', metadata, autoload=True, autoload_with=engine)
-    stmt_eco = select([eco_table.c.region, eco_table.c.service_center, eco_table.c.driver, eco_table.c.penalty_type,
-                       eco_table.c.penalty_points]).where(
+    stmt_eco = select([eco_table.columns.region,eco_table.columns.service_center,eco_table.columns.driver,
+                    (func.sum(
+                        case([
+                            (eco_table.columns.penalty_type == 'Harsh acceleration', eco_table.columns.penalty_points)
+                        ], else_=0))).label('Harsh_acceleration_points'),
+                   (func.sum(
+                       case([
+                           (eco_table.columns.penalty_type == 'Harsh braking', eco_table.columns.penalty_points)
+                       ], else_=0))).label('Harsh_braking_points'),
+                    (func.sum(
+                        case([
+                            (eco_table.columns.penalty_type == 'Harsh cornering', eco_table.columns.penalty_points)
+                        ], else_=0))).label('Harsh_cornering_points'),
+                    (func.sum(
+                        case([
+                            (eco_table.columns.penalty_type == 'Very harsh acceleration', eco_table.columns.penalty_points)
+                        ], else_=0))).label('Very_harsh_acceleration_points'),
+                    (func.sum(
+                        case([
+                            (eco_table.columns.penalty_type == 'Very harsh braking',
+                             eco_table.columns.penalty_points)
+                        ], else_=0))).label('Very_harsh_braking_points'),
+                    (func.sum(
+                        case([
+                            (eco_table.columns.penalty_type == 'Very harsh cornering',
+                             eco_table.columns.penalty_points)
+                        ], else_=0))).label('Very_harsh_cornering_points')
+                   ])
+
+    # Group By state
+    stmt_eco = stmt_eco.where(
         and_(eco_table.c.start_time >= start, eco_table.c.driver != '-----', eco_table.c.penalty_type != '-----'))
-    # stmt_eco = select([eco_table.c.plate, db.func.sum(eco_table.c.penalty_points)]).where(and_(eco_table.c.start_time >= start,)).group_by(eco_table.c.plate)
+    stmt_eco = stmt_eco.group_by(eco_table.columns.region,eco_table.columns.service_center,eco_table.columns.driver)
+
+    # Execute the query and store the results: results
     results_eco = connection.execute(stmt_eco).fetchall()
-    eco = pd.DataFrame(results_eco)
-    eco.columns = ['region', 'service_center', 'driver', 'penalty_type', 'penalty_points']
-
-
-    agr_eco = eco.pivot_table(index=['region', 'service_center', 'driver'], columns='penalty_type',
-                                   values=['penalty_points'], fill_value=0, aggfunc=np.sum)
-    agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
-    agr_to_table = agr_to_table.fillna(0)
-    agr_to_table = agr_to_table.astype(int, copy=True, errors='ignore')
-    agr_to_table.columns = ['region', 'service_center', 'driver', 'milage', 'max_speed', 'speed_limit_exceed',
-                            'harsh_a_points', 'harsh_b_points', 'harsh_c_points', 'v_harsh_a_points',
+    agr_eco = pd.DataFrame(results_eco)
+    agr_eco.columns = ['region', 'service_center', 'driver','harsh_a_points', 'harsh_b_points', 'harsh_c_points', 'v_harsh_a_points',
                             'v_harsh_b_points', 'v_harsh_c_points']
+
+
+
+    # stmt_eco = select([eco_table.c.region, eco_table.c.service_center, eco_table.c.driver, eco_table.c.penalty_type,
+    #                    eco_table.c.penalty_points]).where(
+    #     and_(eco_table.c.start_time >= start, eco_table.c.driver != '-----', eco_table.c.penalty_type != '-----'))
+    # # stmt_eco = select([eco_table.c.plate, db.func.sum(eco_table.c.penalty_points)]).where(and_(eco_table.c.start_time >= start,)).group_by(eco_table.c.plate)
+    # results_eco = connection.execute(stmt_eco).fetchall()
+    # eco = pd.DataFrame(results_eco)
+    # eco.columns = ['region', 'service_center', 'driver', 'penalty_type', 'penalty_points']
+    #
+    #
+    # agr_eco = eco.pivot_table(index=['region', 'service_center', 'driver'], columns='penalty_type',
+    #                                values=['penalty_points'], fill_value=0, aggfunc=np.sum)
+    # agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
+    # agr_to_table = agr_to_table.fillna(0)
+    # agr_to_table = agr_to_table.astype(int, copy=True, errors='ignore')
+    # agr_to_table.columns = ['region', 'service_center', 'driver', 'milage', 'max_speed', 'speed_limit_exceed',
+    #                         'harsh_a_points', 'harsh_b_points', 'harsh_c_points', 'v_harsh_a_points',
+    #                         'v_harsh_b_points', 'v_harsh_c_points']
+    agr_to_table = agr_reisebi.merge(agr_eco, on=['region','service_center','driver'], how='left').fillna(0)
+
+    agr_to_table=agr_to_table.astype(int, copy=True, errors='ignore')
     agr_to_table['total_penalty_points'] = agr_to_table['harsh_a_points'] + agr_to_table['harsh_b_points'] + \
                                            agr_to_table['harsh_c_points'] + agr_to_table['v_harsh_a_points'] + \
                                            agr_to_table['v_harsh_b_points'] + agr_to_table['v_harsh_c_points']
-    print(agr_to_table.head())
-    del [[eco]]
-    gc.collect()
+
+
+
+    # print(agr_to_table.head())
+    # del [[eco]]
+    # gc.collect()
     return agr_to_table
 
 
@@ -179,7 +263,7 @@ layout = dbc.Container([
                     {'id': "driver", 'name': "driver"},
                     dict(id='milage', name='milage', type='numeric', format=Format(precision=2, scheme=Scheme.fixed)),
                     {'id': "max_speed", 'name': "max_speed"},
-                    {'id': "speed_limit_exceed", 'name': "speed_limit_exceed"},
+                    {'id': "speed_exc_cnt", 'name': "speed_limit_exceed"},
                     {'id': "harsh_a_points", 'name': "Harsh Acceleration points"},
                     {'id': "harsh_b_points", 'name': "Harsh Breaking points"},
                     {'id': "harsh_c_points", 'name': "Harsh Cornering points"},
