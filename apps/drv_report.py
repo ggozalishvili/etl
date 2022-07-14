@@ -12,6 +12,8 @@ from sqlalchemy import and_
 from sqlalchemy.sql import select
 from app import app
 from app import connection, engine, db
+from dash.dependencies import Input, Output
+from dash import Dash
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -198,7 +200,7 @@ results_skip = connection.execute(stmt_menu).fetchall()
 menu = pd.DataFrame(results_skip)
 menu.columns = ['region', 'service_center']
 
-
+#df = pd.DataFrame({"a": [1, 2, 3, 4], "b": [2, 1, 5, 6], "c": ["x", "x", "y", "y"]})
 
 layout = dbc.Container([
     dcc.Interval(id='interval_pg2', interval=86400000 * 7, n_intervals=0),  # activated once/week or when page refreshed
@@ -315,6 +317,8 @@ layout = dbc.Container([
         dcc.Interval(id='interval2', interval=1000)
     ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
     html.Br(),
+    # html.Button("Download Excel", id="btn_xlsx"),
+    # dcc.Download(id="download-dataframe-xlsx"),
 
 
 ], fluid=True)
@@ -333,3 +337,23 @@ def update_aggregate_drv_rows(start, end, n_intervals):
     data_group = read_data(start, end)
     return data_group.to_dict('records')
 
+# @app.callback(
+#     Output("download-dataframe-xlsx", "data"),
+#     Input("btn_xlsx", "n_clicks"),
+#     Input('my-date-picker-range2', 'start_date'),
+#     Input('my-date-picker-range2', 'end_date'),
+#     #Input('interval_pg2', 'n_intervals'),
+#     prevent_initial_call=True,
+# )
+# def func(n_clicks,start, end):
+#     df = read_data(start, end)
+#     return dcc.send_data_frame(df.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1")
+
+
+# @app.callback(
+#     Output("download-dataframe-xlsx", "data"),
+#     Input("btn_xlsx", "n_clicks"),
+#     prevent_initial_call=True,
+# )
+# def func(n_clicks):
+#     return dcc.send_data_frame(df.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1")

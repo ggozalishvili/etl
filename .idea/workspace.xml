@@ -11,11 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="1st">
+      <change afterPath="$PROJECT_DIR$/get-pip.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/alo_xlsx.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/alo_xlsx.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/drivers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drivers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/drv_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drv_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/etl.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/etl.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.zip" beforeDir="false" afterPath="$PROJECT_DIR$/data.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/predash/app.py" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Dash-by-Plotly-master/Dash Components/Download" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
@@ -177,7 +179,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="static_date_etl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,12 +187,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/static_date_etl.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -203,9 +205,9 @@
       <list>
         <item itemvalue="Python.etl" />
         <item itemvalue="Python.index" />
+        <item itemvalue="Python.scratch_1" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.db_connection" />
-        <item itemvalue="Python.static_date_etl" />
       </list>
     </recent_temporary>
   </component>
@@ -310,7 +312,15 @@
       <workItem from="1655881146406" duration="23417000" />
       <workItem from="1655966837567" duration="34857000" />
       <workItem from="1656358790734" duration="1149000" />
-      <workItem from="1656563815350" duration="3331000" />
+      <workItem from="1656563815350" duration="3622000" />
+      <workItem from="1657031946834" duration="2458000" />
+      <workItem from="1657201608082" duration="1413000" />
+      <workItem from="1657506021167" duration="4000" />
+      <workItem from="1657506644791" duration="625000" />
+      <workItem from="1657507300699" duration="3358000" />
+      <workItem from="1657510837886" duration="2337000" />
+      <workItem from="1657514297738" duration="7111000" />
+      <workItem from="1657782170404" duration="5217000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <created>1625989685542</created>
@@ -577,42 +587,42 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="640" y="271" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1920.1032@0.0.1920.1032" timestamp="1652538308105" />
-    <state x="360" y="253" key="FileChooserDialogImpl" timestamp="1654631179229">
+    <state x="360" y="253" key="FileChooserDialogImpl" timestamp="1657510397892">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="360" y="253" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1654631179229" />
-    <state width="1877" height="207" key="GridCell.Tab.0.bottom" timestamp="1656876929688">
+    <state x="360" y="253" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1657510397892" />
+    <state width="1211" height="295" key="GridCell.Tab.0.bottom" timestamp="1657819807589">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1656876929688" />
-    <state width="1877" height="207" key="GridCell.Tab.0.center" timestamp="1656876929688">
+    <state width="1211" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1657819807589" />
+    <state width="1211" height="295" key="GridCell.Tab.0.center" timestamp="1657819807589">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="207" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1656876929688" />
-    <state width="1877" height="207" key="GridCell.Tab.0.left" timestamp="1656876929688">
+    <state width="1211" height="295" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1657819807589" />
+    <state width="1211" height="295" key="GridCell.Tab.0.left" timestamp="1657819807589">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="207" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1656876929688" />
-    <state width="1877" height="207" key="GridCell.Tab.0.right" timestamp="1656876929688">
+    <state width="1211" height="295" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1657819807589" />
+    <state width="1211" height="295" key="GridCell.Tab.0.right" timestamp="1657819807589">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="207" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1656876929688" />
-    <state width="1877" height="226" key="GridCell.Tab.1.bottom" timestamp="1656338248971">
+    <state width="1211" height="295" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1657819807589" />
+    <state width="1399" height="347" key="GridCell.Tab.1.bottom" timestamp="1657662894809">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="226" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1656338248971" />
-    <state width="1877" height="226" key="GridCell.Tab.1.center" timestamp="1656338248971">
+    <state width="1399" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
+    <state width="1399" height="347" key="GridCell.Tab.1.center" timestamp="1657662894809">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="226" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1656338248971" />
-    <state width="1877" height="226" key="GridCell.Tab.1.left" timestamp="1656338248971">
+    <state width="1399" height="347" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
+    <state width="1399" height="347" key="GridCell.Tab.1.left" timestamp="1657662894809">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="226" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1656338248971" />
-    <state width="1877" height="226" key="GridCell.Tab.1.right" timestamp="1656338248971">
+    <state width="1399" height="347" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
+    <state width="1399" height="347" key="GridCell.Tab.1.right" timestamp="1657662894809">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1877" height="226" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1656338248971" />
+    <state width="1399" height="347" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
     <state width="254" height="457" key="HiddenNamespacesPopup" timestamp="1653326292681">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -683,16 +693,6 @@
           <line>135</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
-          <line>178</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
-          <line>187</line>
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -710,7 +710,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/predash$test.coverage" NAME="test Coverage Results" MODIFIED="1630271067968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1656876929648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1657819724983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$static_date_etl__1_.coverage" NAME="static_date_etl (1) Coverage Results" MODIFIED="1630132042870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$main.coverage" NAME="main Coverage Results" MODIFIED="1628839228956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1654501224039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
@@ -723,6 +723,6 @@
     <SUITE FILE_PATH="coverage/predash$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1626247795051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
     <SUITE FILE_PATH="coverage/predash$t.coverage" NAME="t Coverage Results" MODIFIED="1630273206496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$static_date_etl.coverage" NAME="static_date_etl Coverage Results" MODIFIED="1652534884483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1656084822350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1657517221969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
