@@ -11,8 +11,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="1st">
+      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/etl2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/141b0d39-d78a-4cab-9f1f-d8de10f65327.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/141b0d39-d78a-4cab-9f1f-d8de10f65327.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/141b0d39-d78a-4cab-9f1f-d8de10f65327/storage_v2/_src_/database/geogps.uXOGtQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/141b0d39-d78a-4cab-9f1f-d8de10f65327/storage_v2/_src_/database/geogps.uXOGtQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e/storage_v2/_src_/database/d886nbel7m1jvm.00sR6Q.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e/storage_v2/_src_/database/d886nbel7m1jvm.00sR6Q/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e/storage_v2/_src_/database/d886nbel7m1jvm.00sR6Q/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b488125d-4164-4326-8a96-dc56ae341d7e/storage_v2/_src_/database/d886nbel7m1jvm.00sR6Q/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/da8d32cc-51ab-43f9-a662-e725a0714c52.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/da8d32cc-51ab-43f9-a662-e725a0714c52.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/alo_xlsx.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/alo_xlsx.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/drivers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drivers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/drv_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drv_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/etl.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/etl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.zip" beforeDir="false" afterPath="$PROJECT_DIR$/data.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +44,17 @@
       </list>
     </option>
   </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
@@ -39,6 +67,9 @@
     </option>
   </component>
   <component name="JupyterTrust" id="bd3784a9-2617-43f2-83b0-3f19c6a587a9" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1v7s5V0R7PjG7qNxF5iOezJNWHU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,23 +78,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DatabaseDriversLRU" value="postgresql" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Dash-by-Plotly-master/Dash Components/Download" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "import_schema_mapping": "<schema-mapping><databases><list><schema-mapping-item><source-data-source-id>141b0d39-d78a-4cab-9f1f-d8de10f65327</source-data-source-id><source-path>database/\"geogps\"/schema/\"public\"</source-path><target-data-source-id>b488125d-4164-4326-8a96-dc56ae341d7e</target-data-source-id><target-path>database/\"d8l6qs2difee9t\"/schema/\"public\"</target-path></schema-mapping-item><schema-mapping-item><source-data-source-id>b488125d-4164-4326-8a96-dc56ae341d7e</source-data-source-id><source-path>database/\"d8l6qs2difee9t\"/schema/\"public\"</source-path><target-data-source-id>141b0d39-d78a-4cab-9f1f-d8de10f65327</target-data-source-id><target-path>database/\"geogps\"/schema/\"public\"</target-path></schema-mapping-item></list></databases></schema-mapping>",
+    "last_opened_file_path": "C:/Users/PC/Desktop",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\Desktop" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\PC\PycharmProjects\dash_multi-page\predash\apps" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.etl">
+  <component name="RunManager" selected="Python.index">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,20 +124,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="db_connection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="etl2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/db_connection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/etl2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -108,22 +143,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="etl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="etl2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/etl.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\PC\PycharmProjects\dash_multi-page\predash\apps\etl2.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="etv2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dash_multi-page" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/apps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/apps/etv2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -134,9 +185,6 @@
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -144,28 +192,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="dash_multi-page" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,14 +224,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.etl" />
         <item itemvalue="Python.index" />
+        <item itemvalue="Python.etl2 (1)" />
+        <item itemvalue="Python.etv2" />
+        <item itemvalue="Python.etl2" />
         <item itemvalue="Python.scratch_1" />
-        <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.db_connection" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -315,7 +342,32 @@
       <workItem from="1657507300699" duration="3358000" />
       <workItem from="1657510837886" duration="2337000" />
       <workItem from="1657514297738" duration="7111000" />
-      <workItem from="1657782170404" duration="5550000" />
+      <workItem from="1657782170404" duration="8622000" />
+      <workItem from="1658049436630" duration="684000" />
+      <workItem from="1658205269843" duration="4417000" />
+      <workItem from="1658699890432" duration="635000" />
+      <workItem from="1658816011542" duration="607000" />
+      <workItem from="1658990410781" duration="6634000" />
+      <workItem from="1659383573145" duration="660000" />
+      <workItem from="1659508133191" duration="1671000" />
+      <workItem from="1659595127890" duration="1803000" />
+      <workItem from="1659853241265" duration="668000" />
+      <workItem from="1659862049928" duration="414000" />
+      <workItem from="1659863969592" duration="1149000" />
+      <workItem from="1659940102898" duration="3091000" />
+      <workItem from="1660030998152" duration="4621000" />
+      <workItem from="1660120954144" duration="2484000" />
+      <workItem from="1660567204019" duration="1235000" />
+      <workItem from="1660834436883" duration="628000" />
+      <workItem from="1661284708164" duration="601000" />
+      <workItem from="1661844769828" duration="627000" />
+      <workItem from="1661932078026" duration="1670000" />
+      <workItem from="1662107598413" duration="178000" />
+      <workItem from="1662356242839" duration="616000" />
+      <workItem from="1662626816737" duration="621000" />
+      <workItem from="1662705541902" duration="1679000" />
+      <workItem from="1662725333676" duration="27778000" />
+      <workItem from="1663060983206" duration="21924000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <created>1625989685542</created>
@@ -545,7 +597,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -557,123 +609,12 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="with etl" />
     <MESSAGE value="1st" />
     <option name="LAST_COMMIT_MESSAGE" value="1st" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="853" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1654322686128">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="853" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654322686128" />
-    <state x="735" y="318" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1653333995337">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="735" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1653333995337" />
-    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1654267930333">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="690" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654267930333" />
-    <state x="640" y="271" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1652538308105">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="640" y="271" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1920.1032@0.0.1920.1032" timestamp="1652538308105" />
-    <state x="360" y="253" key="FileChooserDialogImpl" timestamp="1657510397892">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="360" y="253" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1657510397892" />
-    <state width="1380" height="336" key="GridCell.Tab.0.bottom" timestamp="1657820390012">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1380" height="336" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1657820390012" />
-    <state width="1380" height="336" key="GridCell.Tab.0.center" timestamp="1657820390012">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1380" height="336" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1657820390012" />
-    <state width="1380" height="336" key="GridCell.Tab.0.left" timestamp="1657820390012">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1380" height="336" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1657820390012" />
-    <state width="1380" height="336" key="GridCell.Tab.0.right" timestamp="1657820390012">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1380" height="336" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1657820390012" />
-    <state width="1399" height="347" key="GridCell.Tab.1.bottom" timestamp="1657662894809">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1399" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
-    <state width="1399" height="347" key="GridCell.Tab.1.center" timestamp="1657662894809">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1399" height="347" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
-    <state width="1399" height="347" key="GridCell.Tab.1.left" timestamp="1657662894809">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1399" height="347" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
-    <state width="1399" height="347" key="GridCell.Tab.1.right" timestamp="1657662894809">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="1399" height="347" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1657662894809" />
-    <state width="254" height="457" key="HiddenNamespacesPopup" timestamp="1653326292681">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="254" height="457" key="HiddenNamespacesPopup/0.0.1920.1032@0.0.1920.1032" timestamp="1653326292681" />
-    <state x="461" y="161" key="SettingsEditor" timestamp="1654501689314">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="461" y="161" key="SettingsEditor/0.0.1920.1032@0.0.1920.1032" timestamp="1654501689314" />
-    <state width="523" height="446" key="SwitcherDM" timestamp="1654501653296">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="523" height="446" key="SwitcherDM/0.0.1920.1032@0.0.1920.1032" timestamp="1654501653296" />
-    <state width="968" height="524" key="XDebugger.FullValuePopup" timestamp="1654431602968">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state width="968" height="524" key="XDebugger.FullValuePopup/0.0.1920.1032@0.0.1920.1032" timestamp="1654431602968" />
-    <state x="772" y="399" width="376" height="270" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1" timestamp="1654179869081">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="772" y="399" width="376" height="270" key="com.intellij.database.actions.DdlActions$CommentOnObjectAction$1/0.0.1920.1032@0.0.1920.1032" timestamp="1654179869081" />
-    <state x="836" y="373" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1652529978370">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="836" y="373" key="com.intellij.database.actions.DdlActions$CreateObject$1/0.0.1920.1032@0.0.1920.1032" timestamp="1652529978370" />
-    <state x="822" y="393" width="316" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1654661462053">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="822" y="393" width="316" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1032@0.0.1920.1032" timestamp="1654661462053" />
-    <state x="842" y="403" width="295" height="225" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1654032196456">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="842" y="403" width="295" height="225" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654032196456" />
-    <state x="540" y="171" key="com.intellij.database.dbimport.ImportDialog" timestamp="1655982741755">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="540" y="171" key="com.intellij.database.dbimport.ImportDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1655982741755" />
-    <state x="690" y="321" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1654686719907">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="690" y="321" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654686719907" />
-    <state x="795" y="271" width="741" height="315" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1654659168911">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="795" y="271" width="741" height="315" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654659168911" />
-    <state x="527" y="91" width="676" height="795" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1654180021079">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="527" y="91" width="676" height="795" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1654180021079" />
-    <state x="667" y="251" width="585" height="530" key="find.popup" timestamp="1653331261565">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="667" y="251" width="585" height="530" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1653331261565" />
-    <state x="616" y="169" width="670" height="676" key="search.everywhere.popup" timestamp="1654501650919">
-      <screen x="0" y="0" width="1920" height="1032" />
-    </state>
-    <state x="616" y="169" width="670" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1654501650919" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -687,6 +628,66 @@
           <url>file://$PROJECT_DIR$/apps/service.py</url>
           <line>135</line>
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py</url>
+          <line>144</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>126</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>130</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>134</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>136</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>139</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>142</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/drv_report.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -704,20 +705,22 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/predash$test.coverage" NAME="test Coverage Results" MODIFIED="1630271067968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1657819724983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$static_date_etl__1_.coverage" NAME="static_date_etl (1) Coverage Results" MODIFIED="1630132042870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$main.coverage" NAME="main Coverage Results" MODIFIED="1628839228956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1654501224039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/predash$api_connection__1_.coverage" NAME="api_connection (1) Coverage Results" MODIFIED="1628190435217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$crud.coverage" NAME="crud Coverage Results" MODIFIED="1628834736688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$service.coverage" NAME="service Coverage Results" MODIFIED="1630061883782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$app.coverage" NAME="app Coverage Results" MODIFIED="1652533259638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$service.coverage" NAME="service Coverage Results" MODIFIED="1630061883782" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1626279603805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
-    <SUITE FILE_PATH="coverage/predash$cars.coverage" NAME="cars Coverage Results" MODIFIED="1630070772162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1626247795051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
-    <SUITE FILE_PATH="coverage/predash$t.coverage" NAME="t Coverage Results" MODIFIED="1630273206496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$static_date_etl.coverage" NAME="static_date_etl Coverage Results" MODIFIED="1652534884483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1657517221969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$api_connection__1_.coverage" NAME="api_connection (1) Coverage Results" MODIFIED="1628190435217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1663101568600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$etv2.coverage" NAME="etv2 Coverage Results" MODIFIED="1663095603706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$test.coverage" NAME="test Coverage Results" MODIFIED="1663094221753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1662972115906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$scratch_1.coverage" NAME="scratch_1 Coverage Results" MODIFIED="1662973820460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/predash$crud.coverage" NAME="crud Coverage Results" MODIFIED="1628834736688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$t.coverage" NAME="t Coverage Results" MODIFIED="1630273206496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$cars.coverage" NAME="cars Coverage Results" MODIFIED="1630070772162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$main.coverage" NAME="main Coverage Results" MODIFIED="1628839228956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$static_date_etl__1_.coverage" NAME="static_date_etl (1) Coverage Results" MODIFIED="1630132042870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
+    <SUITE FILE_PATH="coverage/predash$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1654501224039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/predash$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1626247795051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
   </component>
 </project>

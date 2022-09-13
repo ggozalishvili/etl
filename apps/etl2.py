@@ -7,18 +7,18 @@ import datetime
 import sqlalchemy
 from sqlalchemy import create_engine, MetaData, select, Table
 import time
-from sqlalchemy.types import Integer,DateTime,String
+from sqlalchemy.types import Integer,DateTime,String,Numeric
 
 
 
 #engine = sqlalchemy.create_engine('postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm')
-engine =  sqlalchemy.create_engine('postgresql://mpxwygfqyhlykh:5ba21ce8429a2bfd66cb38edcaa4d28a276f28843f666edb54aa4f4e9e55f67a@ec2-54-194-211-183.eu-west-1.compute.amazonaws.com:5432/d8l6qs2difee9t')
+engine = sqlalchemy.create_engine('postgresql://mpxwygfqyhlykh:5ba21ce8429a2bfd66cb38edcaa4d28a276f28843f666edb54aa4f4e9e55f67a@ec2-54-194-211-183.eu-west-1.compute.amazonaws.com:5432/d8l6qs2difee9t')
 #engine = sqlalchemy.create_engine('postgresql://postgres:123456@localhost:5432/geogps')
 metadata = MetaData()
 connection = engine.connect()
 
 
-car_table = Table('cars', metadata, autoload=True,autoload_with=engine)
+car_table = Table('cars_test', metadata, autoload=True,autoload_with=engine)
 sc_mapping = Table('sc_mapping', metadata, autoload=True,autoload_with=engine)
 
 stmt = select([car_table])
@@ -33,7 +33,7 @@ sc_reg = pd.DataFrame(results_sc_map)
 df_odo = pd.DataFrame()
 df_reis = pd.DataFrame()
 df_eco = pd.DataFrame()
-
+df_zone = pd.DataFrame()
 
 #Find necessary dates
 today = datetime.date.today()
@@ -41,7 +41,7 @@ today = datetime.date.today()
 
 
 
-stmt_last_date = 'SELECT distinct start_time FROM reis order by start_time desc limit 1'
+stmt_last_date = 'SELECT distinct time_out FROM zone order by time_out desc limit 1'
 results = connection.execute(stmt_last_date).scalar()
 print(results)
 #last_date_synced=datetime.datetime.strptime("01.01.2022 00:00:00", '%d.%m.%Y %H:%M:%S')
@@ -49,7 +49,7 @@ last_date_synced=results.date()
 print(last_date_synced)
 
 def gps_api():
-  global df_reis, df_eco, df_odo
+  global df_reis, df_eco, df_odo,df_zone
   first_date = last_date_synced
   second_date = today
 
@@ -60,7 +60,9 @@ def gps_api():
   total_seconds_first_date = difference_first_date.total_seconds()
   total_seconds_second_date = difference_second_date.total_seconds()
   total_seconds_first_date = int(total_seconds_first_date)
+  #total_seconds_first_date =1654027200
   total_seconds_second_date = int(total_seconds_second_date)
+  #total_seconds_second_date = 1661976000
 
   #login
   url = "https://local.geogps.ge/wialon/ajax.html?svc=token/login&params={\"token\": \"1a40157dde2cd7675367fe3a97caa6938AA5FB511914F8CF5F9A60DCC1D6AE2A95ED5EC6\",\"operateAs\": \"\"}"
@@ -108,7 +110,7 @@ def gps_api():
     values_of_key = values_of_key.replace(']', '')
 
     #execute report
-    url_part2 = "https://local.geogps.ge/wialon/ajax.html?svc=report/exec_report&params={\"reportResourceId\":349,\"reportTemplateId\":15,\"reportObjectId\":"
+    url_part2 = "https://local.geogps.ge/wialon/ajax.html?svc=report/exec_report&params={\"reportResourceId\":349,\"reportTemplateId\":27,\"reportObjectId\":"
 
     url_part2_2_a = ",\"reportObjectSecId\":0,\"interval\":{\"from\":"
     url_part2_2_b = ",\"to\":"
@@ -141,66 +143,35 @@ def gps_api():
       with ZipFile("../data.zip", 'r') as zipObj:
         # Extract all the contents of zip file in current directory
         zipObj.extractall()
+      print(row[0])
+      zones_raw = pd.read_excel('alo_xlsx.xlsx', sheet_name=row[0], skipfooter=1,
+                              dtype={'index': int, 'plate': str, 'reg_zone': str, 'time_in': datetime, 'time_out': datetime,
+                                     'duration_in': datetime, 'off_time': datetime, 'driver': str})
 
-      odo_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=1,skipfooter=1,
-                              dtype={'index': int, 'plate': str, 'start_odo': int, 'last_odo': int, 'odo_milage': int,
-                                     'odo_travel_time': str, 'odo_max_speed': int, 'calc_odo': int})
-      reis_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=2,skipfooter=1,
-                               dtype={'index': int, 'plate': str, 'start_time': datetime,'start_location': str,
-                                      'end_time': datetime, 'end_location': str, 'duration': str, 'milage': int,
-                                      'max_speed': int, 'driver': str, 'fuel_consumed': int, 'quantity': int})
-      eco_raw = pd.read_excel('alo_xlsx.xlsx',sheet_name=3,skipfooter=1,
-                              dtype={'index': int, 'plate': str,'driver': str,'start_time': datetime, 'location': str,
-                                      'penalty_type': str, 'penalty_points': int, 'quantity': int,
-                                     'eco_milage': int})
-
-
-
-      df_reis = df_reis.append(reis_raw,ignore_index = True)
-
-      df_eco = df_eco.append(eco_raw,ignore_index = True)
-      df_odo = df_odo.append(odo_raw[:1], ignore_index=True)
-
+      zones_raw['plate']=row[0]
+      zones_raw = zones_raw.drop(zones_raw.columns[[0]], axis=1)
+      df_zone = df_zone.append(zones_raw, ignore_index=True)
     except:
       pass
 
-  df_reis = df_reis.drop(df_reis.columns[[11]], axis=1)
-  df_reis.columns = ['plate', 'start_time', 'start_location', 'end_time', 'end_location','duration', 'milage', 'max_speed',
-                             'driver','fuel_consumed','quantity']
-
-  df_eco = df_eco.drop(df_eco.columns[[8, 9]], axis=1)
-  df_eco.columns = ['plate', 'driver', 'start_time','location','penalty_type','penalty_points','quantity','eco_milage']
-  df_odo.columns = ['plate', 'start_odo', 'last_odo','odo_milage','odo_travel_time','odo_max_speed']
-  df_odo['calc_odo'] = df_odo['last_odo']+df_odo['odo_milage']
   sc_reg.columns = ['plate', 'service_center','region']
-
-  df_reis['end_time'] = pd.to_datetime(df_reis['end_time'], format='%d.%m.%Y %H:%M:%S')
-  df_reis['start_time'] = pd.to_datetime(df_reis['start_time'], format='%d.%m.%Y %H:%M:%S')
-  df_eco['start_time'] = pd.to_datetime(df_eco['start_time'], format='%d.%m.%Y %H:%M:%S')
+  zone_ag_data = df_zone.merge(sc_reg, on='plate', how='left')
+  zone_ag_data.columns=['reg_zone','time_in','time_out','duration_in_min','off_time_min','driver','plate','service_center','region']
 
 
-  reisebi_ag_data = df_reis.merge(sc_reg, on='plate', how='left')
-  eco_ag_data = df_eco.merge(sc_reg, on='plate', how='left')
-  odo_ag_data = df_odo.merge(sc_reg, on='plate', how='left')
-
-
-  reisebi_ag_data.to_sql('reis', connection, if_exists = 'append',
-                 dtype={'index': Integer(), 'plate': String(), 'start_time': DateTime(), 'start_location': String(),
-                        'end_time': DateTime(), 'end_location': String(), 'duration': String(), 'milage': Integer(),
-                        'max_speed': Integer(), 'driver': String(), 'fuel_consumed': Integer(), 'quantity': Integer()
-                        , 'service_center': String(), 'region': String()})
-  eco_ag_data.to_sql('eco', connection, if_exists = 'append',
-                dtype={'index': Integer(), 'plate': String(), 'driver': String(), 'start_time': DateTime(), 'location': String(),
-                       'penalty_type': String(), 'penalty_points': Integer(), 'quantity': Integer(),
-                       'eco_milage': Integer(), 'service_center': String(), 'region': String()})
-  odo_ag_data.to_sql('odo', connection, if_exists = 'replace',
-                dtype={'index': Integer(), 'plate': String(), 'start_odo':  Integer(), 'last_odo': Integer(), 'odo_milage': Integer(),
-                       'odo_travel_time': String(), 'odo_max_speed': Integer(), 'calc_odo': Integer()
-                       ,'service_center': String(), 'region': String()})
-
+  zone_ag_data['off_time_min'] = pd.to_timedelta(zone_ag_data['off_time_min'].astype(str)).dt.total_seconds()//60
+  zone_ag_data['duration_in_min'] = pd.to_timedelta(zone_ag_data['duration_in_min'].astype(str)).dt.total_seconds()//60
+  #zone_ag_data['off_time']= zone_ag_data['off_time'].astype(float)
+  #zone_ag_data['duration_in']= zone_ag_data['duration_in'].astype(float)
+  #zone_ag_data['off_time']=zone_ag_data['off_time'].round(decimals=2)
+  #zone_ag_data['duration_in']=zone_ag_data['duration_in'].round(decimals=2)
+  zone_ag_data.to_sql('zone', connection, if_exists='append',
+                      dtype={'index': Integer(), 'reg_zone': String(), 'time_in': DateTime(),
+                             'time_out': DateTime(),
+                             'duration_in_min': Integer(), 'off_time_min': Integer(),'driver': String(), 'plate': String()
+                             ,'service_center': String(),'region': String()})
 
   print("ETL finished")
-
 
 if last_date_synced==(today - datetime.timedelta(days=1)):
   print("Database up to date")

@@ -58,25 +58,8 @@ def read_data(start, end):
     agr_reisebi2.columns = ['region','service_center','driver','speed_exc_cnt']
 
 
-    # stmt = select([reisebi_table.c.region,reisebi_table.c.service_center,reisebi_table.c.driver,reisebi_table.c.plate,reisebi_table.c.start_time,reisebi_table.c.milage,reisebi_table.c.max_speed]).where(
-    #         and_(reisebi_table.c.start_time >= start, reisebi_table.c.end_time <= end, reisebi_table.c.driver !='-----'))
-    # result = connection.execute(stmt).fetchall()
-    # reisebi = pd.DataFrame(result)
-    # reisebi.columns = ['region','service_center','driver','plate','start_date_time',
-    #                    'milage',
-    #                    'max_speed']
 
     agr_reisebi=agr_reisebi.merge(agr_reisebi2, on=['region','service_center','driver'], how='left')
-    # reisebi = (
-    #      agr_reisebi.merge(agr_reisebi2,
-    #                    on=['service_center','driver'],
-    #                    how='left',
-    #                    indicator=True)
-    #          .query('_merge == "left_only"')
-    #          .drop(columns='_merge').fillna(0))
-
-
-
 
     # skip query
     skip_table = Table('skip', metadata, autoload=True,
@@ -91,27 +74,6 @@ def read_data(start, end):
 
     skipped = skip.drop_duplicates()
 
-
-
-    # reisebi = (
-    #     reisebi.merge(skipped,
-    #                   on=['plate', 'start_date_time'],
-    #                   how='left',
-    #                   indicator=True)
-    #         .query('_merge == "left_only"')
-    #         .drop(columns='_merge')
-    # )
-    # agr_raisebi = reisebi.groupby(['region', 'service_center', 'driver']).agg(
-    #     milage=('milage', sum),
-    #     max_speed=('max_speed', max),
-    #     speed_limit_exceed=("max_speed", lambda x: x[x >= 90].count())
-    #
-    # )
-    # agr_raisebi = agr_raisebi.reset_index()
-    # # data_e=eco_data[(eco_data['driver'] !='-----')]
-    # # data_ec = data_e[(data_e['penalty_type'] !='-----')]
-    # del [[reisebi]]
-    # gc.collect()
 
 
     # eco query
@@ -150,32 +112,33 @@ def read_data(start, end):
         and_(eco_table.c.start_time >= start, eco_table.c.driver != '-----', eco_table.c.penalty_type != '-----'))
     stmt_eco = stmt_eco.group_by(eco_table.columns.region,eco_table.columns.service_center,eco_table.columns.driver)
 
+
+
+
     # Execute the query and store the results: results
     results_eco = connection.execute(stmt_eco).fetchall()
     agr_eco = pd.DataFrame(results_eco)
     agr_eco.columns = ['region', 'service_center', 'driver','harsh_a_points', 'harsh_b_points', 'harsh_c_points', 'v_harsh_a_points',
                             'v_harsh_b_points', 'v_harsh_c_points']
 
+    # zone query
+    zone_table = Table('zone', metadata, autoload=True, autoload_with=engine)
 
+    stmt_zone = select([zone_table.c.region, zone_table.c.service_center, zone_table.c.driver, zone_table.c.reg_zone,
+                        (func.sum((zone_table.c.off_time_min))).label('out_of_zone_minutes'),
+                        (func.count((zone_table.c.off_time_min))).label('out_of_zone_count')])
 
-    # stmt_eco = select([eco_table.c.region, eco_table.c.service_center, eco_table.c.driver, eco_table.c.penalty_type,
-    #                    eco_table.c.penalty_points]).where(
-    #     and_(eco_table.c.start_time >= start, eco_table.c.driver != '-----', eco_table.c.penalty_type != '-----'))
-    # # stmt_eco = select([eco_table.c.plate, db.func.sum(eco_table.c.penalty_points)]).where(and_(eco_table.c.start_time >= start,)).group_by(eco_table.c.plate)
-    # results_eco = connection.execute(stmt_eco).fetchall()
-    # eco = pd.DataFrame(results_eco)
-    # eco.columns = ['region', 'service_center', 'driver', 'penalty_type', 'penalty_points']
-    #
-    #
-    # agr_eco = eco.pivot_table(index=['region', 'service_center', 'driver'], columns='penalty_type',
-    #                                values=['penalty_points'], fill_value=0, aggfunc=np.sum)
-    # agr_to_table = agr_raisebi.merge(agr_eco, on='driver', how='left')
-    # agr_to_table = agr_to_table.fillna(0)
-    # agr_to_table = agr_to_table.astype(int, copy=True, errors='ignore')
-    # agr_to_table.columns = ['region', 'service_center', 'driver', 'milage', 'max_speed', 'speed_limit_exceed',
-    #                         'harsh_a_points', 'harsh_b_points', 'harsh_c_points', 'v_harsh_a_points',
-    #                         'v_harsh_b_points', 'v_harsh_c_points']
-    agr_to_table = agr_reisebi.merge(agr_eco, on=['region','service_center','driver'], how='left').fillna(0)
+    stmt_zone = stmt_zone.where(
+        and_(zone_table.c.time_out >= start, zone_table.c.time_out <= end, zone_table.c.driver != '-----'))
+    stmt_zone = stmt_zone.group_by(zone_table.columns.region, zone_table.columns.service_center,
+                                   zone_table.columns.driver, zone_table.columns.reg_zone)
+    result_zone = connection.execute(stmt_zone).fetchall()
+    agr_zone = pd.DataFrame(result_zone)
+    agr_zone.columns = ['region', 'service_center', 'driver','reg_zone', 'out_of_zone_minutes', 'out_of_zone_count']
+
+    #merge
+    agr_to_table1 = agr_reisebi.merge(agr_eco, on=['region','service_center','driver'], how='left').fillna(0)
+    agr_to_table = agr_to_table1.merge(agr_zone, on=['region', 'service_center', 'driver'], how='left').fillna(0)
 
     agr_to_table=agr_to_table.astype(int, copy=True, errors='ignore')
     agr_to_table['total_penalty_points'] = agr_to_table['harsh_a_points'] + agr_to_table['harsh_b_points'] + \
@@ -184,9 +147,7 @@ def read_data(start, end):
 
 
 
-    # print(agr_to_table.head())
-    # del [[eco]]
-    # gc.collect()
+
     return agr_to_table
 
 
@@ -200,7 +161,7 @@ results_skip = connection.execute(stmt_menu).fetchall()
 menu = pd.DataFrame(results_skip)
 menu.columns = ['region', 'service_center']
 
-#df = pd.DataFrame({"a": [1, 2, 3, 4], "b": [2, 1, 5, 6], "c": ["x", "x", "y", "y"]})
+
 
 layout = dbc.Container([
     dcc.Interval(id='interval_pg2', interval=86400000 * 7, n_intervals=0),  # activated once/week or when page refreshed
@@ -219,10 +180,10 @@ layout = dbc.Container([
             clearable=True,  # whether or not the user can clear the dropdown
             number_of_months_shown=1,  # number of months shown when calendar is open
             min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
-            max_date_allowed=dt(2022, 8, 1),  # maximum date allowed on the DatePickerRange component
-            initial_visible_month=dt(2022, 1, 1),  # the month initially presented when the user opens the calendar
+            max_date_allowed=dt(2022, 10, 1),  # maximum date allowed on the DatePickerRange component
+            initial_visible_month=dt(2022, 7, 1),  # the month initially presented when the user opens the calendar
             start_date=dt(2022, 6, 1).date(),
-            end_date=dt(2022, 8, 1).date(),
+            end_date=dt(2022, 10, 1).date(),
             display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
             month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
             minimum_nights=2,  # minimum number of days between start and end date
@@ -272,7 +233,10 @@ layout = dbc.Container([
                     {'id': "v_harsh_a_points", 'name': "Very Harsh Acceleration points"},
                     {'id': "v_harsh_b_points", 'name': "Very Harsh Breaking points"},
                     {'id': "v_harsh_c_points", 'name': "Very Harsh Cornering points"},
-                    {'id': "total_penalty_points", 'name': "total penalty points"}
+                    {'id': "total_penalty_points", 'name': "total penalty points"},
+                    {'id': "reg_zone", 'name': "registered zone"},
+                    {'id': "out_of_zone_minutes", 'name': "out of zone minutes"},
+                    {'id': "out_of_zone_count", 'name': "zone cross count"}
                 ],
                 editable=False,  # allow editing of data inside all cells
                 cell_selectable="False",

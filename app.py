@@ -15,7 +15,7 @@ server = app.server
 #app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:123456@localhost/geogps"
 
 # for your home PostgreSQL test table
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://cnwcerliarfbvk:0091d0f3d6abbc8f5545f122703dfb43ee0da1b18e2d59282a96cc62373060af@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/d886nbel7m1jvm"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://mpxwygfqyhlykh:5ba21ce8429a2bfd66cb38edcaa4d28a276f28843f666edb54aa4f4e9e55f67a@ec2-54-194-211-183.eu-west-1.compute.amazonaws.com:5432/d8l6qs2difee9t"
 
 
 db = SQLAlchemy(app.server)
