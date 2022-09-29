@@ -66,7 +66,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;import_schema_mapping&quot;: &quot;&lt;schema-mapping&gt;&lt;databases&gt;&lt;list&gt;&lt;schema-mapping-item&gt;&lt;source-data-source-id&gt;141b0d39-d78a-4cab-9f1f-d8de10f65327&lt;/source-data-source-id&gt;&lt;source-path&gt;database/\&quot;geogps\&quot;/schema/\&quot;public\&quot;&lt;/source-path&gt;&lt;target-data-source-id&gt;b488125d-4164-4326-8a96-dc56ae341d7e&lt;/target-data-source-id&gt;&lt;target-path&gt;database/\&quot;d8l6qs2difee9t\&quot;/schema/\&quot;public\&quot;&lt;/target-path&gt;&lt;/schema-mapping-item&gt;&lt;schema-mapping-item&gt;&lt;source-data-source-id&gt;b488125d-4164-4326-8a96-dc56ae341d7e&lt;/source-data-source-id&gt;&lt;source-path&gt;database/\&quot;d8l6qs2difee9t\&quot;/schema/\&quot;public\&quot;&lt;/source-path&gt;&lt;target-data-source-id&gt;141b0d39-d78a-4cab-9f1f-d8de10f65327&lt;/target-data-source-id&gt;&lt;target-path&gt;database/\&quot;geogps\&quot;/schema/\&quot;public\&quot;&lt;/target-path&gt;&lt;/schema-mapping-item&gt;&lt;/list&gt;&lt;/databases&gt;&lt;/schema-mapping&gt;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/PycharmProjects/dash_multi-page/predash&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/geogps_dash&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -199,6 +199,9 @@
       <module name="dash_multi-page" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -378,7 +381,9 @@
       <workItem from="1664460797476" duration="109000" />
       <workItem from="1664460916853" duration="3795000" />
       <workItem from="1664465098451" duration="118000" />
-      <workItem from="1664465231525" duration="352000" />
+      <workItem from="1664465231525" duration="1107000" />
+      <workItem from="1664466657084" duration="227000" />
+      <workItem from="1664468453227" duration="771000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <created>1625989685542</created>
