@@ -207,7 +207,7 @@ def job ():
   else:
     gps_api()
 
-schedule.every(2).minutes.at(":00").do(job)
+schedule.every(720).minutes.at(":00").do(job)
 
 while True:
   schedule.run_pending()
