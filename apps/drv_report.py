@@ -5,7 +5,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 import pandas as pd
-from dash.dependencies import Input, Output
 from dash_table.Format import Format, Scheme
 from sqlalchemy import MetaData, Table, case, func
 from sqlalchemy import and_
@@ -225,7 +224,7 @@ layout = dbc.Container([
         dbc.Col([
             html.Br(),
 
-            html.H3("საჯარიმო ქულები,სიჩქარის გადაჭარბება და გარბენი მძღოლების მიხედვით", className='text-center text-primary mb-4'),
+            html.H3("საჯარიმო ქულები,სიჩქარის გადაჭარბება,ზონის კონტროლი და გარბენი მძღოლების მიხედვით", className='text-center text-primary mb-4'),
             html.Br(),
             dash_table.DataTable(
                 id='aggregate_drivers_table2',
@@ -297,41 +296,6 @@ layout = dbc.Container([
 
 
 
-# @app.callback(
-#     Output(component_id='aggregate_drivers_table2', component_property='data'),
-#     #Input(component_id='region_dropdown2', component_property='value'),
-#     #Input(component_id='sc_dropdown2', component_property='value'),
-#     Input('my-date-picker-range2', 'start_date'),
-#     Input('my-date-picker-range2', 'end_date'),
-#     Input('interval_pg2', 'n_intervals')
-# )
-# def update_aggregate_drv_rows(start, end, n_intervals):
-#     data_group = read_data(start, end)
-#     return data_group.to_dict('records')
-
-
-# @app.callback(
-#     Output("download-component", "data"),
-#     Input("btn", "n_clicks"),
-#     Input('my-date-picker-range2', 'start_date'),
-#     Input('my-date-picker-range2', 'end_date'),
-#     prevent_initial_call=True,)
-# def func(n_clicks,start, end):
-#     df = read_data(start, end)
-#     return dcc.send_data_frame(df.to_csv, "mydf_csv.csv")
-
-
-# @app.callback(
-#     Output("download-component", "data"),
-#     Input("btn", "n_clicks"),
-#     prevent_initial_call=True,
-# )
-# def func(n_clicks):
-#     #return dict(content="Always remember, we're better together.", filename="hello.txt")
-#     return dcc.send_data_frame(df.to_csv, "mydf_csv.csv")
-#     # return dcc.send_data_frame(df.to_excel, "mydf_excel.xlsx", sheet_name="Sheet_name_1")
-#     # return dcc.send_file("./assets/data_file.txt")
-#     # return dcc.send_file("./assets/bees-by-Lisa-from-Pexels.jpg")
 
 @app.callback(
     Output("download-component", "data"),
@@ -345,5 +309,4 @@ layout = dbc.Container([
 )
 def update_aggregate_drv_rows(n_clicks,start, end, n_intervals):
     data_group = read_data(start, end)
-   # return dcc.send_data_frame(data_group.to_csv, "mydf_csv.csv"), data_group.to_dict('records')
     return dcc.send_data_frame(data_group.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1"), data_group.to_dict('records')
