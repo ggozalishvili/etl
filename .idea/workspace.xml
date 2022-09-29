@@ -13,14 +13,6 @@
     <list default="true" id="38ca4782-823d-402d-b32e-167c2ab70282" name="Default Changelist" comment="1st">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/alo_xlsx.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/db_connection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/drv_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/drv_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/etl.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/etl2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/static_date_etl.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,7 +376,8 @@
       <workItem from="1664457960556" duration="2192000" />
       <workItem from="1664460650632" duration="135000" />
       <workItem from="1664460797476" duration="109000" />
-      <workItem from="1664460916853" duration="2659000" />
+      <workItem from="1664460916853" duration="3795000" />
+      <workItem from="1664465098451" duration="118000" />
     </task>
     <task id="LOCAL-00001" summary="1st">
       <created>1625989685542</created>
@@ -672,7 +665,7 @@
     <SUITE FILE_PATH="coverage/predash$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1626279603805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/datasets" />
     <SUITE FILE_PATH="coverage/predash$static_date_etl.coverage" NAME="static_date_etl Coverage Results" MODIFIED="1652534884483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$api_connection__1_.coverage" NAME="api_connection (1) Coverage Results" MODIFIED="1628190435217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
-    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1664460575098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/predash$index.coverage" NAME="index Coverage Results" MODIFIED="1664465098889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/predash$etv2.coverage" NAME="etv2 Coverage Results" MODIFIED="1663095603706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$test.coverage" NAME="test Coverage Results" MODIFIED="1663094221753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
     <SUITE FILE_PATH="coverage/predash$etl.coverage" NAME="etl Coverage Results" MODIFIED="1663220965863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apps" />
