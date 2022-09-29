@@ -247,6 +247,7 @@ layout = dbc.Container([
             # html.A(html.Button('Refresh Data'), href='/apps/drivers'),
         ])
     ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
+
 ], fluid=True)
 
 

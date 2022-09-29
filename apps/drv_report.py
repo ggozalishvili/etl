@@ -13,7 +13,7 @@ from sqlalchemy.sql import select
 from app import app
 from app import connection, engine, db
 from dash.dependencies import Input, Output
-from dash import Dash
+
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 FONT_AWESOME = (
@@ -27,6 +27,7 @@ DATA_PATH = PATH.joinpath("../datasets").resolve()
 
 menu = pd.read_sql_table('menu', con=db.engine)
 
+#df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
 
 def read_data(start, end):
     metadata = MetaData()
@@ -180,10 +181,10 @@ layout = dbc.Container([
             clearable=True,  # whether or not the user can clear the dropdown
             number_of_months_shown=1,  # number of months shown when calendar is open
             min_date_allowed=dt(2022, 1, 1),  # minimum date allowed on the DatePickerRange component
-            max_date_allowed=dt(2022, 10, 1),  # maximum date allowed on the DatePickerRange component
+            max_date_allowed=dt(2022, 12, 31),  # maximum date allowed on the DatePickerRange component
             initial_visible_month=dt(2022, 7, 1),  # the month initially presented when the user opens the calendar
             start_date=dt(2022, 6, 1).date(),
-            end_date=dt(2022, 10, 1).date(),
+            end_date=dt(2022, 7, 1).date(),
             display_format='MMM Do, YY',  # how selected dates are displayed in the DatePickerRange component.
             month_format='MMMM, YYYY',  # how calendar headers are displayed when the calendar is opened.
             minimum_nights=2,  # minimum number of days between start and end date
@@ -193,8 +194,16 @@ layout = dbc.Container([
             updatemode='singledate'  # singledate or bothdates. Determines when callback is triggered
         ),
 
-
         ]
+            , width={'size': 2, 'offset': 0}),
+
+        dbc.Col([dbc.Button(id='btn',
+                               children=[html.I(className="fa fa-download mr-1"), "გენერაცია და გადმოწერა"],
+                               color="info",
+                               className="mt-1"
+                               ),
+
+                    dcc.Download(id="download-component"),]
             , width={'size': 2, 'offset': 0}),
         ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
     dbc.Row([
@@ -278,46 +287,63 @@ layout = dbc.Container([
 
 
         html.Div(id='placeholder2', children=[]),
-        dcc.Interval(id='interval2', interval=1000)
+        dcc.Interval(id='interval2', interval=1000),
+
     ], no_gutters=False, justify='left', style={'marginBottom': '2em'}),
-    html.Br(),
-    # html.Button("Download Excel", id="btn_xlsx"),
-    # dcc.Download(id="download-dataframe-xlsx"),
+
 
 
 ], fluid=True)
 
 
 
-@app.callback(
-    Output(component_id='aggregate_drivers_table2', component_property='data'),
-    #Input(component_id='region_dropdown2', component_property='value'),
-    #Input(component_id='sc_dropdown2', component_property='value'),
-    Input('my-date-picker-range2', 'start_date'),
-    Input('my-date-picker-range2', 'end_date'),
-    Input('interval_pg2', 'n_intervals')
-)
-def update_aggregate_drv_rows(start, end, n_intervals):
-    data_group = read_data(start, end)
-    return data_group.to_dict('records')
-
 # @app.callback(
-#     Output("download-dataframe-xlsx", "data"),
-#     Input("btn_xlsx", "n_clicks"),
+#     Output(component_id='aggregate_drivers_table2', component_property='data'),
+#     #Input(component_id='region_dropdown2', component_property='value'),
+#     #Input(component_id='sc_dropdown2', component_property='value'),
 #     Input('my-date-picker-range2', 'start_date'),
 #     Input('my-date-picker-range2', 'end_date'),
-#     #Input('interval_pg2', 'n_intervals'),
-#     prevent_initial_call=True,
+#     Input('interval_pg2', 'n_intervals')
 # )
-# def func(n_clicks,start, end):
-#     df = read_data(start, end)
-#     return dcc.send_data_frame(df.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1")
+# def update_aggregate_drv_rows(start, end, n_intervals):
+#     data_group = read_data(start, end)
+#     return data_group.to_dict('records')
 
 
 # @app.callback(
-#     Output("download-dataframe-xlsx", "data"),
-#     Input("btn_xlsx", "n_clicks"),
+#     Output("download-component", "data"),
+#     Input("btn", "n_clicks"),
+#     Input('my-date-picker-range2', 'start_date'),
+#     Input('my-date-picker-range2', 'end_date'),
+#     prevent_initial_call=True,)
+# def func(n_clicks,start, end):
+#     df = read_data(start, end)
+#     return dcc.send_data_frame(df.to_csv, "mydf_csv.csv")
+
+
+# @app.callback(
+#     Output("download-component", "data"),
+#     Input("btn", "n_clicks"),
 #     prevent_initial_call=True,
 # )
 # def func(n_clicks):
-#     return dcc.send_data_frame(df.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1")
+#     #return dict(content="Always remember, we're better together.", filename="hello.txt")
+#     return dcc.send_data_frame(df.to_csv, "mydf_csv.csv")
+#     # return dcc.send_data_frame(df.to_excel, "mydf_excel.xlsx", sheet_name="Sheet_name_1")
+#     # return dcc.send_file("./assets/data_file.txt")
+#     # return dcc.send_file("./assets/bees-by-Lisa-from-Pexels.jpg")
+
+@app.callback(
+    Output("download-component", "data"),
+    Output(component_id='aggregate_drivers_table2', component_property='data'),
+    #Input(component_id='region_dropdown2', component_property='value'),
+    #Input(component_id='sc_dropdown2', component_property='value'),
+    Input("btn", "n_clicks"),
+    Input('my-date-picker-range2', 'start_date'),
+    Input('my-date-picker-range2', 'end_date'),
+    Input('interval_pg2', 'n_intervals'), prevent_initial_call=True,
+)
+def update_aggregate_drv_rows(n_clicks,start, end, n_intervals):
+    data_group = read_data(start, end)
+   # return dcc.send_data_frame(data_group.to_csv, "mydf_csv.csv"), data_group.to_dict('records')
+    return dcc.send_data_frame(data_group.to_excel, "mydf.xlsx", sheet_name="Sheet_name_1"), data_group.to_dict('records')

@@ -18,7 +18,7 @@ metadata = MetaData()
 connection = engine.connect()
 
 
-car_table = Table('cars_test', metadata, autoload=True,autoload_with=engine)
+car_table = Table('cars', metadata, autoload=True,autoload_with=engine)
 sc_mapping = Table('sc_mapping', metadata, autoload=True,autoload_with=engine)
 
 stmt = select([car_table])
@@ -59,8 +59,8 @@ def gps_api():
   difference_second_date = second_date-zero_date
   total_seconds_first_date = difference_first_date.total_seconds()
   total_seconds_second_date = difference_second_date.total_seconds()
-  total_seconds_first_date = int(total_seconds_first_date)
-  #total_seconds_first_date =1654027200
+  #total_seconds_first_date = int(total_seconds_first_date)
+  total_seconds_first_date =1654027200
   total_seconds_second_date = int(total_seconds_second_date)
   #total_seconds_second_date = 1661976000
 
